@@ -1,0 +1,124 @@
+<xs:schema
+  elementFormDefault="qualified"
+  targetNamespace="http://mycompany.com/jax-rs-auth-seed/config.xsd"
+  xmlns:cf="http://mycompany.com/jax-rs-auth-seed/config.xsd"
+  xmlns:dt="http://commons.safris.org/datatypes.xsd"
+  xmlns:dbcp="http://commons.safris.org/dbcp.xsd"
+  xmlns:lg="http://commons.safris.org/logging.xsd"
+  xmlns:se="http://commons.safris.org/servlet.xsd"
+  xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  
+  <xs:import namespace="http://commons.safris.org/datatypes.xsd" schemaLocation="http://commons.safris.org/datatypes.xsd"/>
+  <xs:import namespace="http://commons.safris.org/dbcp.xsd" schemaLocation="http://commons.safris.org/dbcp.xsd"/>
+  <xs:import namespace="http://commons.safris.org/logging.xsd" schemaLocation="http://commons.safris.org/logging.xsd"/>
+  <xs:import namespace="http://commons.safris.org/servlet.xsd" schemaLocation="http://commons.safris.org/servlet.xsd"/>
+  
+  <xs:complexType name="server" abstract="true">
+    <xs:attribute name="port" type="dt:port" use="required"/>
+  </xs:complexType>
+  
+  <xs:complexType name="http">
+    <xs:complexContent>
+      <xs:extension base="cf:server"/>
+    </xs:complexContent>
+  </xs:complexType>
+  
+  <xs:complexType name="https">
+    <xs:complexContent>
+      <xs:extension base="cf:server">
+        <xs:sequence>
+          <xs:element name="keystore">
+            <xs:complexType>
+              <xs:attribute name="path" type="xs:token" use="required"/>
+              <xs:attribute name="password" type="xs:token" use="required"/>
+            </xs:complexType>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  
+  <xs:complexType name="mail">
+    <xs:all>
+      <xs:element name="server">
+        <xs:complexType>
+          <xs:all>
+            <xs:element name="credentials">
+              <xs:complexType>
+                <xs:attribute name="username" type="xs:token" use="required"/>
+                <xs:attribute name="password" type="xs:string" use="required"/>
+              </xs:complexType>
+            </xs:element>
+          </xs:all>
+          <xs:attribute name="host" type="dt:host" use="required"/>
+          <xs:attribute name="port" type="dt:port" use="required"/>
+          <xs:attribute name="protocol" use="required">
+            <xs:simpleType>
+              <xs:restriction base="xs:NCName">
+                <xs:enumeration value="smtp"/>
+                <xs:enumeration value="smtps"/>
+              </xs:restriction>
+            </xs:simpleType>
+          </xs:attribute>
+        </xs:complexType>
+      </xs:element>
+    </xs:all>
+  </xs:complexType>
+  
+  <xs:complexType name="config">
+    <xs:sequence>
+      <xs:element name="properties">
+        <xs:complexType>
+          <xs:sequence maxOccurs="unbounded">
+            <xs:element name="property">
+              <xs:complexType>
+                <xs:attribute name="name" type="xs:NCName" use="required"/>
+                <xs:attribute name="value" type="xs:string" use="required"/>
+              </xs:complexType>
+            </xs:element>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="debug" minOccurs="0">
+        <xs:complexType>
+          <xs:sequence minOccurs="0" maxOccurs="unbounded">
+            <xs:element name="logging">
+              <xs:complexType>
+                <xs:sequence>
+                  <xs:element name="logger" type="lg:setting" minOccurs="0" maxOccurs="unbounded"/>
+                </xs:sequence>
+                <xs:attribute name="global" type="lg:level" use="required"/>
+              </xs:complexType>
+            </xs:element>
+          </xs:sequence>
+          <xs:attribute name="externalResourcesAccess" type="xs:boolean" use="required"/>
+          <xs:attribute name="onServiceExceptionEmail" use="required">
+            <xs:simpleType>
+              <xs:union memberTypes="dt:email">
+                <xs:simpleType>
+                  <xs:restriction base="xs:token">
+                    <xs:maxLength value="0"/>
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:union>
+            </xs:simpleType>
+          </xs:attribute>
+          <xs:attribute name="displayJsonSpecOnServiceError" type="xs:boolean" use="required"/>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="server" type="cf:server"/>
+      <xs:element name="mail" type="cf:mail"/>
+      <xs:element name="realm" type="se:realm"/>
+      <xs:element name="dbcps">
+        <xs:complexType>
+          <xs:sequence maxOccurs="unbounded">
+            <xs:element ref="dbcp:dbcp"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  
+  <xs:element name="config" type="cf:config"/>
+
+</xs:schema>

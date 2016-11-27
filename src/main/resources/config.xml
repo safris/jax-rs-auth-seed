@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config
+  xmlns="http://mycompany.com/jax-rs-auth-seed/config.xsd"
+  xmlns:se="http://commons.safris.org/servlet.xsd"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://jax-rs.mycompany.com/auth-seed/config.xsd config.xsd">
+  
+  <properties>
+    <property name="clientScheme" value="http"/>
+    <property name="clientHost" value="localhost:3000"/>
+
+    <property name="serverScheme" value="http"/>
+    <property name="serverHost" value="localhost:8180"/>
+
+    <property name="companyName" value="Basis"/>
+    <property name="tosUrl" value="{{clientScheme}}://{{clientHost}}/#/terms"/>
+    <property name="privacyUrl" value="{{clientScheme}}://{{clientHost}}/#/privacy"/>
+  </properties>
+  
+  <debug externalResourcesAccess="true" onServiceExceptionEmail="" displayJsonSpecOnServiceError="false">
+    <logging global="FINER"/>
+  </debug>
+  
+  <server xsi:type="http" port="8180"/>
+  
+  <mail>
+    <server host="smtp.gmail.com" port="465" protocol="smtps">
+      <credentials username="<!--noreply@mycompany.com-->" password="<!--MY_PASSWORD-->"/>
+    </server>
+  </mail>
+  
+  <realm name="Restricted">
+    <se:credential username="admin" password="admin" roles="admin"/>
+  </realm>
+  
+  <dbcps>
+    <dbcp xmlns="http://commons.safris.org/dbcp.xsd" name="mycompany">
+      <jdbc>
+        <url>jdbc:postgresql://localhost/mycompany</url>
+        <driverClassName>org.postgresql.Driver</driverClassName>
+        <username>mycompany</username>
+        <password>mycompany</password>
+        <loginTimeout>5000</loginTimeout>
+      </jdbc>
+      <default>
+        <autoCommit>true</autoCommit>
+        <readOnly>false</readOnly>
+        <transactionIsolation>READ_UNCOMMITTED</transactionIsolation>
+      </default>
+      <size>
+        <initialSize>0</initialSize>
+        <maxActive>16</maxActive>
+        <maxIdle>16</maxIdle>
+        <minIdle>0</minIdle>
+        <maxWait>1000</maxWait>
+      </size>
+      <management>
+        <timeBetweenEvictionRuns>-1</timeBetweenEvictionRuns>
+        <numTestsPerEvictionRun>3</numTestsPerEvictionRun>
+        <minEvictableIdleTime>1800000</minEvictableIdleTime>
+      </management>
+      <preparedStatements>
+        <poolPreparedStatements>false</poolPreparedStatements>
+        <maxOpenPreparedStatements>-1</maxOpenPreparedStatements>
+      </preparedStatements>
+      <removal>
+        <removeAbandoned>false</removeAbandoned>
+        <removeAbandonedTimeout>300</removeAbandonedTimeout>
+        <logAbandoned>false</logAbandoned>
+      </removal>
+      <logging>
+        <level>ALL</level>
+        <logExpiredConnections>true</logExpiredConnections>
+        <logAbandoned>true</logAbandoned>
+      </logging>
+    </dbcp>
+  </dbcps>
+  
+</config>

@@ -1,0 +1,10 @@
+<cli
+  xmlns="http://commons.safris.org/cli.xsd"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://commons.safris.org/cli.xsd http://commons.safris.org/cli.xsd">
+  <option>
+    <name long="config" short="C"/>
+    <argument label="CONFIG_FILE"/>
+    <description>config file to use instead of default</description>
+  </option>
+</cli>

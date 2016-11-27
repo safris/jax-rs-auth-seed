@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<json name="api"
+  xmlns="http://xjb.safris.org/xjs.xsd"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://xjb.safris.org/xjs.xsd http://xjb.safris.org/xjs.xsd">
+  
+  <description>JSON class definitions for communication protocol of server API</description>
+  
+  <object name="id" abstract="true">
+    <property xsi:type="string" name="id" pattern="[0-9A-F]{8}-[0-9A-F]{4}-[0-9A-F]{4}-[0-9A-F]{4}-[0-9A-F]{12}" null="false"/>
+  </object>
+  
+  <object name="idVersion" abstract="true" extends="id">
+    <property xsi:type="number" name="version" null="false"/>
+  </object>
+  
+  <object name="ids">
+    <property xsi:type="string" name="id" pattern="[0-9A-F]{8}-[0-9A-F]{4}-[0-9A-F]{4}-[0-9A-F]{4}-[0-9A-F]{12}" array="true" null="false"/>
+  </object>
+  
+  <object name="credentials">
+    <property xsi:type="string" name="email" pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}" null="false"/>
+    <property xsi:type="string" name="password" pattern="[0-9a-f]{64}" required="false" null="false"/>
+  </object>
+  
+  <object name="account" extends="credentials">
+    <property xsi:type="string" name="id" pattern="[0-9A-F]{8}-[0-9A-F]{4}-[0-9A-F]{4}-[0-9A-F]{4}-[0-9A-F]{12}" null="false" required="false"/>
+    <property xsi:type="string" name="firstName" null="false"/>
+    <property xsi:type="string" name="lastName" null="false"/>
+  </object>
+
+</json>
