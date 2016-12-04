@@ -1,9 +1,8 @@
-<?xml version="1.0" encoding="UTF-8"?>
 <config
   xmlns="http://mycompany.com/jax-rs-auth-seed/config.xsd"
   xmlns:se="http://commons.safris.org/servlet.xsd"
   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="http://jax-rs.mycompany.com/auth-seed/config.xsd config.xsd">
+  xsi:schemaLocation="http://mycompany.com/jax-rs-auth-seed/config.xsd config.xsd">
   
   <properties>
     <property name="clientScheme" value="http"/>

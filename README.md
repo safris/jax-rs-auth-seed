@@ -1,5 +1,5 @@
-<img src="http://safris.org/logo.png" align="right"/>
-## jax-rs-auth-seed<br>[![JavaCommons](https://img.shields.io/badge/java-enterprise-blue.svg)](https://cohesionfirst.com/) [![CohesionFirst](https://img.shields.io/badge/CohesionFirst%E2%84%A2--blue.svg)](https://cohesionfirst.com/)
+<img src="https://www.cohesionfirst.org/logo.png" align="right"/>
+## jax-rs-auth-seed<br>![java-enterprise][java-enterprise]  <a href="https://www.cohesionfirst.org/"><img src="https://img.shields.io/badge/CohesionFirst%E2%84%A2--blue.svg"></a>
 > The complete basic auth pattern, and seed for JAX-RS.
 
 **Why do we keep reinventing the wheel? The authentication patten has been done and done again 1,000,000 times. Instead of spending the first two weeks of development on the authentication requirement, get a jump start on implementing your business logic immediately.**
@@ -122,6 +122,7 @@ This project is licensed under the MIT License - see the [LICENSE.txt](LICENSE.t
 [apache-wink]: https://wink.apache.org/
 [eclipse]: https://eclipse.org/
 [git]: https://git-scm.com/
+[java-enterprise]: https://img.shields.io/badge/java-enterprise-blue.svg
 [jax-rs-auth-seed-issues]: https://github.com/SevaSafris/jax-rs-auth-seed/issues
 [jax-rs-spec]: http://download.oracle.com/otn-pub/jcp/jaxrs-2_0_rev_A-mrel-eval-spec/jsr339-jaxrs-2.0-final-spec.pdf
 [jdk-download]: http://www.oracle.com/technetwork/java/javase/downloads

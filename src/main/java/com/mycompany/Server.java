@@ -96,7 +96,7 @@ public class Server extends EmbeddedServletContainer {
     onServiceErrorEmail = ((String)config._debug(0)._onServiceExceptionEmail$().text()).length() > 0 ? (String)config._debug(0)._onServiceExceptionEmail$().text() : null;
     mailSender = new MailSender(Mail.Protocol.valueOf(config._mail(0)._server(0)._protocol$().text().toUpperCase()), config._mail(0)._server(0)._host$().text(), config._mail(0)._server(0)._port$().text(), config._mail(0)._server(0)._credentials(0)._username$().text(), config._mail(0)._server(0)._credentials(0)._password$().text());
 
-    final DataSource dataSource = DataSources.createDataSource(config._dbcps(0).dbcp_dbcp(), "auth-seed");
+    final DataSource dataSource = DataSources.createDataSource(config._dbcps(0).dbcp_dbcp(), "mycompany");
     EntityRegistry.register(mycompany.class, PreparedStatement.class, new EntityDataSource() {
       @Override
       public Connection getConnection() throws SQLException {
