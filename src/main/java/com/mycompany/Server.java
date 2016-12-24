@@ -12,11 +12,8 @@ import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServlet;
 import javax.sql.DataSource;
-import javax.ws.rs.core.MediaType;
 import javax.ws.rs.ext.RuntimeDelegate;
 
-import org.safris.xrs.server.ext.RuntimeDelegateImpl;
-import org.safris.xsb.runtime.Bindings;
 import org.safris.commons.cli.Options;
 import org.safris.commons.dbcp.DataSources;
 import org.safris.commons.jetty.EmbeddedServletContainer;
@@ -29,6 +26,8 @@ import org.safris.commons.xml.dom.DOMStyle;
 import org.safris.commons.xml.dom.DOMs;
 import org.safris.xdb.entities.EntityDataSource;
 import org.safris.xdb.entities.EntityRegistry;
+import org.safris.xrs.server.ext.RuntimeDelegateImpl;
+import org.safris.xsb.runtime.Bindings;
 import org.xml.sax.InputSource;
 
 import com.mycompany.jaxrsauthseed.config.xe.$cf_https;
@@ -37,9 +36,6 @@ import com.mycompany.jaxrsauthseed.config.xe.cf_config;
 import xdb.ddl.mycompany;
 
 public class Server extends EmbeddedServletContainer {
-  public static final String APPLICATION_AUTH_SEED_MOBILE_V1_JSON = "application/vnd.mycompany.mobile.v1+json";
-  public static final String APPLICATION_JSON_UTF_8 = MediaType.APPLICATION_JSON + ";charset=UTF-8";
-
   private static final Logger logger = Logger.getLogger(Server.class.getName());
   private static Server instance;
 
@@ -81,18 +77,12 @@ public class Server extends EmbeddedServletContainer {
   }
 
   @SafeVarargs
-  protected Server(final cf_config config, final Class<? extends HttpServlet> ... servletClasses) throws SQLException {
+  protected Server(final cf_config config, final Class<? extends HttpServlet> ... servletClasses) throws SQLException, UnsupportedEncodingException {
     super(config._server(0)._port$().text(), config._server(0) instanceof $cf_https ? (($cf_https)config._server(0))._keystore(0)._path$().text() : null, config._server(0) instanceof $cf_https ? (($cf_https)config._server(0))._keystore(0)._password$().text() : null, !config._debug(0)._externalResourcesAccess$().isNull() && config._debug(0)._externalResourcesAccess$().text(), config._realm(0), servletClasses);
     this.config = config;
     Logging.setLevel(Level.parse(config._debug(0)._logging(0)._global$().text()), config._debug(0)._logging(0)._logger());
 
-    try {
-      from = new InternetAddress(config._mail(0)._server(0)._credentials(0)._username$().text(), config._mail(0)._server(0)._credentials(0)._username$().text());
-    }
-    catch (final UnsupportedEncodingException e) {
-      throw new RuntimeException(e);
-    }
-
+    from = new InternetAddress(config._mail(0)._server(0)._credentials(0)._username$().text(), config._mail(0)._server(0)._credentials(0)._username$().text());
     onServiceErrorEmail = ((String)config._debug(0)._onServiceExceptionEmail$().text()).length() > 0 ? (String)config._debug(0)._onServiceExceptionEmail$().text() : null;
     mailSender = new MailSender(Mail.Protocol.valueOf(config._mail(0)._server(0)._protocol$().text().toUpperCase()), config._mail(0)._server(0)._host$().text(), config._mail(0)._server(0)._port$().text(), config._mail(0)._server(0)._credentials(0)._username$().text(), config._mail(0)._server(0)._credentials(0)._password$().text());
 

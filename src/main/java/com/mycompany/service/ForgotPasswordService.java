@@ -21,7 +21,7 @@ import com.mycompany.Template;
 import com.mycompany.data.AccountData;
 
 import xdb.ddl.mycompany;
-import xjb.json.api;
+import xjb.api;
 
 public class ForgotPasswordService {
   private static void sendEmail(final mycompany.Account a, final String subject, final String template) throws BadLocationException, ParseException {
@@ -34,7 +34,7 @@ public class ForgotPasswordService {
 
   @POST
   @Path("/forgot")
-  @Consumes(Server.APPLICATION_JSON_UTF_8)
+  @Consumes(MediaType.APPLICATION_JSON)
   public void forgot(final api.Credentials credentials) throws BadLocationException, ParseException, SQLException {
     final mycompany.Account a = AccountData.findAccount(credentials.email());
     if (a == null)

@@ -1,5 +1,5 @@
 <img src="https://www.cohesionfirst.org/logo.png" align="right"/>
-## jax-rs-auth-seed<br>![java-enterprise][java-enterprise]  <a href="https://www.cohesionfirst.org/"><img src="https://img.shields.io/badge/CohesionFirst%E2%84%A2--blue.svg"></a>
+## jax-rs-auth-seed<br>![java-enterprise][java-enterprise] <a href="https://www.cohesionfirst.org/"><img src="https://img.shields.io/badge/CohesionFirst%E2%84%A2--blue.svg"></a>
 > The complete basic auth pattern, and seed for JAX-RS.
 
 **Why do we keep reinventing the wheel? The authentication patten has been done and done again 1,000,000 times. Instead of spending the first two weeks of development on the authentication requirement, get a jump start on implementing your business logic immediately.**
@@ -18,7 +18,7 @@ To get you started, you can simply clone the `jax-rs-auth-seed` repository. A de
 
 #### Prerequisites
 
-1. [git][git] - The version control system client needed to clone the `angular-auth-seed` repository.
+1. [git][git] - The version control system client needed to clone the `jax-rs-auth-seed` repository.
 1. [Java JDK][jdk-download] - A minimum JDK and JRE of version 7 is required.
 1. SMTP Server - A SMTP server is needed for `jax-rs-auth-seed` to drive the "Forgot Password" process. This requirement can be satisfied with something as simple as a GMail account, but it is recommended that a dedicated server is used in production.
 

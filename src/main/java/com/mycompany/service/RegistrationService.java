@@ -7,16 +7,16 @@ import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.WebApplicationException;
+import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
-import com.mycompany.Server;
 import com.mycompany.data.AccountData;
 
 import xdb.ddl.mycompany;
-import xjb.json.api;
+import xjb.api;
 
-@Consumes(Server.APPLICATION_JSON_UTF_8)
-@Produces(Server.APPLICATION_AUTH_SEED_MOBILE_V1_JSON)
+@Consumes(MediaType.APPLICATION_JSON)
+@Produces(api.mimeType)
 public class RegistrationService {
   @POST
   @Path("/register")

@@ -2,13 +2,13 @@
   elementFormDefault="qualified"
   targetNamespace="http://mycompany.com/jax-rs-auth-seed/config.xsd"
   xmlns:cf="http://mycompany.com/jax-rs-auth-seed/config.xsd"
-  xmlns:dt="http://commons.safris.org/datatypes.xsd"
-  xmlns:dbcp="http://commons.safris.org/dbcp.xsd"
+  xmlns:dt="http://commons.safris.org/xml/datatypes.xsd"
   xmlns:lg="http://commons.safris.org/logging.xsd"
   xmlns:se="http://commons.safris.org/servlet.xsd"
+  xmlns:dbcp="http://commons.safris.org/dbcp.xsd"
   xmlns:xs="http://www.w3.org/2001/XMLSchema">
   
-  <xs:import namespace="http://commons.safris.org/datatypes.xsd" schemaLocation="http://commons.safris.org/datatypes.xsd"/>
+  <xs:import namespace="http://commons.safris.org/xml/datatypes.xsd" schemaLocation="http://commons.safris.org/xml/datatypes.xsd"/>
   <xs:import namespace="http://commons.safris.org/dbcp.xsd" schemaLocation="http://commons.safris.org/dbcp.xsd"/>
   <xs:import namespace="http://commons.safris.org/logging.xsd" schemaLocation="http://commons.safris.org/logging.xsd"/>
   <xs:import namespace="http://commons.safris.org/servlet.xsd" schemaLocation="http://commons.safris.org/servlet.xsd"/>

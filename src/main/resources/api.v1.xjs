@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<json name="api"
+<json name="api" mimeType="application/vnd.mycompany.mobile.v1+json"
   xmlns="http://xjb.safris.org/xjs.xsd"
   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xsi:schemaLocation="http://xjb.safris.org/xjs.xsd http://xjb.safris.org/xjs.xsd">
@@ -7,26 +6,26 @@
   <description>JSON class definitions for communication protocol of server API</description>
   
   <object name="id" abstract="true">
-    <property xsi:type="string" name="id" pattern="[0-9A-F]{8}-[0-9A-F]{4}-[0-9A-F]{4}-[0-9A-F]{4}-[0-9A-F]{12}" null="false"/>
+    <property xsi:type="string" name="id" null="false" pattern="[0-9A-F]{8}-[0-9A-F]{4}-[0-9A-F]{4}-[0-9A-F]{4}-[0-9A-F]{12}"/>
   </object>
   
   <object name="idVersion" abstract="true" extends="id">
-    <property xsi:type="number" name="version" null="false"/>
+    <property xsi:type="number" name="version" null="false" form="whole" min="0"/>
   </object>
   
   <object name="ids">
-    <property xsi:type="string" name="id" pattern="[0-9A-F]{8}-[0-9A-F]{4}-[0-9A-F]{4}-[0-9A-F]{4}-[0-9A-F]{12}" array="true" null="false"/>
+    <property xsi:type="string" name="id" array="true" null="false" pattern="[0-9A-F]{8}-[0-9A-F]{4}-[0-9A-F]{4}-[0-9A-F]{4}-[0-9A-F]{12}"/>
   </object>
   
   <object name="credentials">
-    <property xsi:type="string" name="email" pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}" null="false"/>
-    <property xsi:type="string" name="password" pattern="[0-9a-f]{64}" required="false" null="false"/>
+    <property xsi:type="string" name="email" null="false" pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}"/>
+    <property xsi:type="string" name="password" required="false" null="false" pattern="[0-9a-f]{64}"/>
   </object>
   
   <object name="account" extends="credentials">
-    <property xsi:type="string" name="id" pattern="[0-9A-F]{8}-[0-9A-F]{4}-[0-9A-F]{4}-[0-9A-F]{4}-[0-9A-F]{12}" null="false" required="false"/>
-    <property xsi:type="string" name="firstName" null="false"/>
-    <property xsi:type="string" name="lastName" null="false"/>
+    <property xsi:type="string" name="id" null="false" required="false" pattern="[0-9A-F]{8}-[0-9A-F]{4}-[0-9A-F]{4}-[0-9A-F]{4}-[0-9A-F]{12}"/>
+    <property xsi:type="string" name="firstName" null="false" pattern="(\S)|(\S.*\S)"/>
+    <property xsi:type="string" name="lastName" null="false" pattern="(\S)|(\S.*\S)"/>
   </object>
 
 </json>

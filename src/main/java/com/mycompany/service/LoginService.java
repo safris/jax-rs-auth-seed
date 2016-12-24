@@ -9,13 +9,12 @@ import javax.ws.rs.core.Context;
 import javax.ws.rs.core.SecurityContext;
 
 import com.mycompany.AccountPrincipal;
-import com.mycompany.Server;
 
 import xdb.ddl.mycompany;
-import xjb.json.api;
+import xjb.api;
 
 @RolesAllowed("user")
-@Produces(Server.APPLICATION_AUTH_SEED_MOBILE_V1_JSON)
+@Produces(api.mimeType)
 public class LoginService {
   @GET
   @Path("/login")
