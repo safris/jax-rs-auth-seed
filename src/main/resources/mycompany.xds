@@ -2,7 +2,7 @@
   xmlns="http://xdb.safris.org/xds.xsd"
   xmlns:xde="http://xdb.safris.org/xde.xsd"
   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="http://xdb.safris.org/xde.xsd http://xdb.safris.org/xde.xsd http://xdb.safris.org/xds.xsd http://xdb.safris.org/xds.xsd">
+  xsi:schemaLocation="http://xdb.safris.org/xde.xsd http://xdb.safris.org/xde.xsd">
   
   <table name="id" abstract="true">
     <column name="id" xsi:type="char" length="36" null="false" xde:generateOnInsert="UUID"/>

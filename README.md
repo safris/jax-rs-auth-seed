@@ -46,12 +46,22 @@ The `depth=1` tells git to only pull down one commit worth of historical data.
 
 ##### Database
 
-The `jax-rs-auth-seed` project uses a SQL DRBSM system for its data storage. You are free to choose a database vendor that provides a JDBC driver. In this project, we recommend [PostgreSQL][postgresql] as the database. The database must be installed, running, and initialized for the application to run. After installing your RDBMS server, you must create a database. For PostgreSQL, the following commands can be used:
+The `jax-rs-auth-seed` project uses a SQL DRBSM system for its data storage. You are free to choose a database vendor that provides a JDBC driver. In this project, we recommend [PostgreSQL][postgresql] as the database. The database must be installed, running, and initialized for the application to run. After installing your RDBMS server, you must create a database.
+
+For PostgreSQL, the following commands can be used:
 
 ```tcsh
 CREATE USER mycompany WITH PASSWORD 'mycompany';
 CREATE DATABASE mycompany;
 GRANT ALL PRIVILEGES ON DATABASE mycompany TO mycompany;
+```
+
+For MySQL, the following commands can be used:
+
+```tcsh
+CREATE USER mycompany;
+CREATE DATABASE mycompany;
+GRANT ALL ON mycompany.* TO 'mycompany'@'localhost' IDENTIFIED BY 'mycompany';
 ```
 
 **NOTE:** The name `mycompany` will be used in this guide as the generic name that you should customize yourself. To change the database name, login credentials, or server location, please refer to the `/config/dbcps/dbcp` XPath path in `src/main/resources/config.xml`.
