@@ -307,10 +307,6 @@
   </build>
   <dependencies>
     <dependency>
-      <groupId>org.postgresql</groupId>
-      <artifactId>postgresql</artifactId>
-    </dependency>
-    <dependency>
       <groupId>org.safris.commons</groupId>
       <artifactId>commons-cli</artifactId>
     </dependency>
@@ -345,6 +341,14 @@
     <dependency>
       <groupId>org.safris.commons</groupId>
       <artifactId>commons-jetty</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.postgresql</groupId>
+      <artifactId>postgresql</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>mysql</groupId>
+      <artifactId>mysql-connector-java</artifactId>
     </dependency>
   </dependencies>
   <dependencyManagement>
@@ -413,14 +417,14 @@
 
       <!-- Only PostgreSQL or MySQL is necessary, not both -->
       <dependency>
-        <groupId>mysql</groupId>
-        <artifactId>mysql-connector-java</artifactId>
-        <version>6.0.5</version>
-      </dependency>
-      <dependency>
         <groupId>org.postgresql</groupId>
         <artifactId>postgresql</artifactId>
         <version>9.4.1212.jre7</version>
+      </dependency>
+      <dependency>
+        <groupId>mysql</groupId>
+        <artifactId>mysql-connector-java</artifactId>
+        <version>6.0.5</version>
       </dependency>
     </dependencies>
   </dependencyManagement>
