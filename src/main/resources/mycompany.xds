@@ -29,7 +29,7 @@
     </column>
     <column name="first_name" xsi:type="char" varying="true" length="64" null="false"/>
     <column name="last_name" xsi:type="char" varying="true" length="64" null="false"/>
-    <column name="role" xsi:type="enum" values="USER ADMIN" null="false"/>
+    <column name="auth_role" xsi:type="enum" values="USER ADMIN" null="false"/>
     <column name="forgot_token" xsi:type="char" length="6" null="true"/>
     <constraints>
       <unique>

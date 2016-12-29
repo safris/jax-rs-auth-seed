@@ -10,7 +10,7 @@
   </object>
   
   <object name="idVersion" abstract="true" extends="id">
-    <property xsi:type="number" name="version" null="false" form="whole" min="0"/>
+    <property xsi:type="number" name="version" null="false" form="integer" min="0"/>
   </object>
   
   <object name="ids">

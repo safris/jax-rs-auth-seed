@@ -26,7 +26,7 @@ public class RegistrationService {
     a.lastName.set(account.lastName());
     a.email.set(account.email());
     a.password.set(account.password());
-    a.role.set(mycompany.Account.Role.USER);
+    a.authRole.set(mycompany.Account.AuthRole.USER);
 
     a = AccountData.saveAccount(a);
     if (a == null)
