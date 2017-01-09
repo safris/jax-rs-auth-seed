@@ -52,7 +52,7 @@ public final class AccountData {
     final mycompany.Account a = new mycompany.Account();
     return UPDATE(a).
       SET(a.forgotToken, (String)null).
-      WHERE(EQ(a.forgotToken, token)).execute();
+      WHERE(EQ(a.forgotToken, token)).execute()[0];
   }
 
   public static mycompany.Account findAccountByToken(final String token) throws SQLException {
