@@ -1,7 +1,7 @@
 <project
   xmlns="http://maven.apache.org/POM/4.0.0"
   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd http://maven.safris.org/common/manifest.xsd http://maven.safris.org/common/manifest.xsd">
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.mycompany</groupId>
   <artifactId>jax-rs-auth-seed</artifactId>
@@ -25,9 +25,9 @@
             <configuration>
               <manifest xmlns="http://maven.safris.org/common/manifest.xsd">
                 <destdir>${project.build.directory}/generated-sources/xdb</destdir>
-                <schemas>
-                  <schema>${basedir}/src/main/resources/mycompany.xds</schema>
-                </schemas>
+                <resources>
+                  <resource>src/main/resources/mycompany.xds</resource>
+                </resources>
               </manifest>
             </configuration>
           </execution>
@@ -37,9 +37,9 @@
               <vendor>PostgreSQL</vendor>
               <manifest xmlns="http://maven.safris.org/common/manifest.xsd">
                 <destdir>${project.build.directory}/generated-resources/xdb</destdir>
-                <schemas>
-                  <schema>${basedir}/src/main/resources/mycompany.xds</schema>
-                </schemas>
+                <resources>
+                  <resource>src/main/resources/mycompany.xds</resource>
+                </resources>
               </manifest>
             </configuration>
           </execution>
@@ -52,9 +52,9 @@
         <configuration>
           <manifest xmlns="http://maven.safris.org/common/manifest.xsd">
             <destdir>${project.build.directory}/generated-sources/xjb</destdir>
-            <schemas>
-              <schema>${basedir}/src/main/resources/api.v1.xjs</schema>
-            </schemas>
+            <resources>
+              <resource>src/main/resources/api.v1.xjs</resource>
+            </resources>
           </manifest>
         </configuration>
       </plugin>
@@ -63,10 +63,10 @@
         <artifactId>xsb-maven-plugin</artifactId>
         <configuration>
           <manifest xmlns="http://maven.safris.org/common/manifest.xsd">
-            <destdir explodeJars="true">${project.build.directory}/generated-sources/xsb</destdir>
-            <schemas>
-              <schema>${basedir}/src/main/resources/config.xsd</schema>
-            </schemas>
+            <destdir>${project.build.directory}/generated-sources/xsb</destdir>
+            <resources>
+              <resource>src/main/resources/config.xsd</resource>
+            </resources>
           </manifest>
         </configuration>
       </plugin>
