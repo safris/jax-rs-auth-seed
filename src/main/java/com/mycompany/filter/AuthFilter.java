@@ -43,7 +43,7 @@ public class AuthFilter implements ContainerRequestFilter {
       requestContext.setProperty(AUTHORIZED_USER, a);
       return a;
     }
-    catch (final SQLException e) {
+    catch (final IOException | SQLException e) {
       throw new WebApplicationException(e);
     }
   }

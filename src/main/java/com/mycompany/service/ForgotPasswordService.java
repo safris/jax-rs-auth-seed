@@ -1,5 +1,6 @@
 package com.mycompany.service;
 
+import java.io.IOException;
 import java.sql.SQLException;
 import java.text.ParseException;
 import java.util.HashMap;
@@ -35,7 +36,7 @@ public class ForgotPasswordService {
   @POST
   @Path("/forgot")
   @Consumes(MediaType.APPLICATION_JSON)
-  public void forgot(final api.Credentials credentials) throws BadLocationException, ParseException, SQLException {
+  public void forgot(final api.Credentials credentials) throws BadLocationException, IOException, ParseException, SQLException {
     final mycompany.Account a = AccountData.findAccount(credentials.email());
     if (a == null)
       throw new NotAcceptableException();
@@ -47,7 +48,7 @@ public class ForgotPasswordService {
 
   @GET
   @Path("/forgot/reset/{token}")
-  public void reset(@PathParam("token") final String token) throws SQLException {
+  public void reset(@PathParam("token") final String token) throws IOException, SQLException {
     final mycompany.Account a = AccountData.findAccountByToken(token);
     if (a == null)
       throw new NotAcceptableException();
@@ -56,7 +57,7 @@ public class ForgotPasswordService {
   @POST
   @Path("/forgot/reset/{token}")
   @Consumes(MediaType.TEXT_PLAIN)
-  public void reset(@PathParam("token") final String token, final String password) throws BadLocationException, ParseException, SQLException {
+  public void reset(@PathParam("token") final String token, final String password) throws BadLocationException, IOException, ParseException, SQLException {
     final mycompany.Account a = AccountData.findAccountByToken(token);
     if (a == null)
       throw new NotAcceptableException();
@@ -69,7 +70,7 @@ public class ForgotPasswordService {
 
   @POST
   @Path("/forgot/report/{token}")
-  public void report(@PathParam("token") final String token) throws SQLException {
+  public void report(@PathParam("token") final String token) throws IOException, SQLException {
     if (AccountData.removeAccountToken(token) == 0)
       throw new NotAcceptableException();
   }

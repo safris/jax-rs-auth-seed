@@ -1,5 +1,6 @@
 package com.mycompany.service;
 
+import java.io.IOException;
 import java.sql.SQLException;
 
 import javax.ws.rs.Consumes;
@@ -20,7 +21,7 @@ import xjb.api;
 public class RegistrationService {
   @POST
   @Path("/register")
-  public api.Account register(final api.Account account) throws SQLException {
+  public api.Account register(final api.Account account) throws IOException, SQLException {
     mycompany.Account a = new mycompany.Account();
     a.firstName.set(account.firstName());
     a.lastName.set(account.lastName());
