@@ -11,14 +11,13 @@ import javax.ws.rs.core.HttpHeaders;
 import javax.ws.rs.core.SecurityContext;
 import javax.ws.rs.ext.Provider;
 
-import org.safris.xrs.server.DefaultRESTServlet;
 import org.safris.commons.net.AuthSchemes;
 import org.safris.commons.security.Credentials;
+import org.safris.dbx.jsql.mycompany;
+import org.safris.xrs.server.DefaultRESTServlet;
 
 import com.mycompany.AccountPrincipal;
 import com.mycompany.data.AccountData;
-
-import xdb.ddl.mycompany;
 
 @Provider
 public class AuthFilter implements ContainerRequestFilter {

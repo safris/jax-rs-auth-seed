@@ -8,8 +8,8 @@
   <version>0.1.0-SNAPSHOT</version>
   <name>${project.groupId}.${project.artifactId}</name>
   <properties>
-    <maven.compiler.source>1.7</maven.compiler.source>
-    <maven.compiler.target>1.7</maven.compiler.target>
+    <maven.compiler.source>1.8</maven.compiler.source>
+    <maven.compiler.target>1.8</maven.compiler.target>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
   </properties>
   <build>
@@ -17,28 +17,28 @@
     <plugins>
       <plugin>
         <groupId>org.safris.maven.plugin</groupId>
-        <artifactId>xdb-maven-plugin</artifactId>
+        <artifactId>dbx-maven-plugin</artifactId>
         <extensions>true</extensions>
         <executions>
           <execution>
-            <id>default-entities</id>
+            <id>default-jsql</id>
             <configuration>
               <manifest xmlns="http://maven.safris.org/common/manifest.xsd">
-                <destdir>${project.build.directory}/generated-sources/xdb</destdir>
+                <destdir>${project.build.directory}/generated-sources/dbx</destdir>
                 <resources>
-                  <resource>src/main/resources/mycompany.xds</resource>
+                  <resource>src/main/resources/mycompany.ddlx</resource>
                 </resources>
               </manifest>
             </configuration>
           </execution>
           <execution>
-            <id>default-schema</id>
+            <id>default-ddl</id>
             <configuration>
               <vendor>PostgreSQL</vendor>
               <manifest xmlns="http://maven.safris.org/common/manifest.xsd">
-                <destdir>${project.build.directory}/generated-resources/xdb</destdir>
+                <destdir>${project.build.directory}/generated-resources/dbx</destdir>
                 <resources>
-                  <resource>src/main/resources/mycompany.xds</resource>
+                  <resource>src/main/resources/mycompany.ddlx</resource>
                 </resources>
               </manifest>
             </configuration>
@@ -128,7 +128,7 @@
             </goals>
             <configuration>
               <includes>
-                <include>**/*.xds</include>
+                <include>**/*.ddlx</include>
                 <include>**/*.xjs</include>
                 <include>**/*.xsd</include>
                 <include>**/*.xml</include>
@@ -147,8 +147,8 @@
         </plugin>
         <plugin>
           <groupId>org.safris.maven.plugin</groupId>
-          <artifactId>xdb-maven-plugin</artifactId>
-          <version>1.4.1</version>
+          <artifactId>dbx-maven-plugin</artifactId>
+          <version>0.9.1</version>
           <extensions>true</extensions>
         </plugin>
         <plugin>
@@ -196,91 +196,6 @@
             </systemProperties>
           </configuration>
         </plugin>
-        <plugin>
-          <groupId>org.eclipse.m2e</groupId>
-          <artifactId>lifecycle-mapping</artifactId>
-          <version>1.0.0</version>
-          <configuration>
-            <lifecycleMappingMetadata>
-              <pluginExecutions>
-                <pluginExecution>
-                  <pluginExecutionFilter>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-plugin-plugin</artifactId>
-                    <versionRange>[0.0,)</versionRange>
-                    <goals>
-                      <goal>descriptor</goal>
-                    </goals>
-                  </pluginExecutionFilter>
-                  <action>
-                    <execute>
-                      <runOnIncremental>false</runOnIncremental>
-                    </execute>
-                  </action>
-                </pluginExecution>
-                <pluginExecution>
-                  <pluginExecutionFilter>
-                    <groupId>org.safris.maven.plugin</groupId>
-                    <artifactId>xjb-maven-plugin</artifactId>
-                    <versionRange>[0.0,)</versionRange>
-                    <goals>
-                      <goal>generate</goal>
-                    </goals>
-                  </pluginExecutionFilter>
-                  <action>
-                    <execute>
-                      <runOnIncremental>false</runOnIncremental>
-                    </execute>
-                  </action>
-                </pluginExecution>
-                <pluginExecution>
-                  <pluginExecutionFilter>
-                    <groupId>org.safris.maven.plugin</groupId>
-                    <artifactId>xsb-maven-plugin</artifactId>
-                    <versionRange>[0.0,)</versionRange>
-                    <goals>
-                      <goal>generate</goal>
-                    </goals>
-                  </pluginExecutionFilter>
-                  <action>
-                    <execute>
-                      <runOnIncremental>false</runOnIncremental>
-                    </execute>
-                  </action>
-                </pluginExecution>
-                <pluginExecution>
-                  <pluginExecutionFilter>
-                    <groupId>org.safris.maven.plugin</groupId>
-                    <artifactId>xdb-maven-plugin</artifactId>
-                    <versionRange>[0.0,)</versionRange>
-                    <goals>
-                      <goal>schema</goal>
-                      <goal>entities</goal>
-                    </goals>
-                  </pluginExecutionFilter>
-                  <action>
-                    <execute>
-                      <runOnIncremental>false</runOnIncremental>
-                    </execute>
-                  </action>
-                </pluginExecution>
-                <pluginExecution>
-                  <pluginExecutionFilter>
-                    <groupId>org.safris.maven.plugin</groupId>
-                    <artifactId>xml-maven-plugin</artifactId>
-                    <versionRange>[0.0.0,)</versionRange>
-                    <goals>
-                      <goal>validate</goal>
-                    </goals>
-                  </pluginExecutionFilter>
-                  <action>
-                    <ignore/>
-                  </action>
-                </pluginExecution>
-              </pluginExecutions>
-            </lifecycleMappingMetadata>
-          </configuration>
-        </plugin>
       </plugins>
     </pluginManagement>
   </build>
@@ -298,8 +213,8 @@
       <artifactId>commons-security</artifactId>
     </dependency>
     <dependency>
-      <groupId>org.safris.xdb</groupId>
-      <artifactId>xdb-entities</artifactId>
+      <groupId>org.safris.dbx</groupId>
+      <artifactId>dbx-jsql</artifactId>
     </dependency>
     <dependency>
       <groupId>org.safris.xrs</groupId>
@@ -384,9 +299,9 @@
         <version>1.0.1</version>
       </dependency>
       <dependency>
-        <groupId>org.safris.xdb</groupId>
-        <artifactId>xdb-entities</artifactId>
-        <version>1.3.3</version>
+        <groupId>org.safris.dbx</groupId>
+        <artifactId>dbx-jsql</artifactId>
+        <version>0.9.5</version>
       </dependency>
       <dependency>
         <groupId>org.safris.xsb</groupId>

@@ -51,16 +51,16 @@ The `jax-rs-auth-seed` project uses a SQL DRBSM system for its data storage. You
 For PostgreSQL, the following commands can be used:
 
 ```tcsh
-CREATE USER mycompany WITH PASSWORD 'mycompany';
 CREATE DATABASE mycompany;
+CREATE USER mycompany WITH PASSWORD 'mycompany';
 GRANT ALL PRIVILEGES ON DATABASE mycompany TO mycompany;
 ```
 
 For MySQL, the following commands can be used:
 
 ```tcsh
-CREATE USER mycompany;
 CREATE DATABASE mycompany;
+CREATE USER mycompany;
 GRANT ALL ON mycompany.* TO 'mycompany'@'localhost' IDENTIFIED BY 'mycompany';
 ```
 

@@ -1,18 +1,13 @@
 package com.mycompany.data;
 
-import static org.safris.xdb.entities.DML.AND;
-import static org.safris.xdb.entities.DML.EQ;
-import static org.safris.xdb.entities.DML.INSERT;
-import static org.safris.xdb.entities.DML.SELECT;
-import static org.safris.xdb.entities.DML.UPDATE;
+import static org.safris.dbx.jsql.DML.*;
 
 import java.io.IOException;
 import java.sql.SQLException;
 
-import org.safris.xdb.entities.RowIterator;
-import org.safris.xdb.entities.Transaction;
-
-import xdb.ddl.mycompany;
+import org.safris.dbx.jsql.RowIterator;
+import org.safris.dbx.jsql.Transaction;
+import org.safris.dbx.jsql.mycompany;
 
 public final class AccountData {
   public static mycompany.Account saveAccount(final mycompany.Account a) throws IOException, SQLException {

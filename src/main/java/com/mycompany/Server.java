@@ -24,16 +24,15 @@ import org.safris.commons.net.mail.Mail;
 import org.safris.commons.sql.ConnectionProxy;
 import org.safris.commons.xml.dom.DOMStyle;
 import org.safris.commons.xml.dom.DOMs;
-import org.safris.xdb.entities.EntityDataSource;
-import org.safris.xdb.entities.EntityRegistry;
+import org.safris.dbx.jsql.EntityDataSource;
+import org.safris.dbx.jsql.EntityRegistry;
+import org.safris.dbx.jsql.mycompany;
 import org.safris.xrs.server.ext.RuntimeDelegateImpl;
 import org.safris.xsb.runtime.Bindings;
 import org.xml.sax.InputSource;
 
 import com.mycompany.jaxrsauthseed.config.xe.$cf_https;
 import com.mycompany.jaxrsauthseed.config.xe.cf_config;
-
-import xdb.ddl.mycompany;
 
 public class Server extends EmbeddedServletContainer {
   private static final Logger logger = Logger.getLogger(Server.class.getName());

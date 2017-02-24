@@ -2,7 +2,7 @@ package com.mycompany;
 
 import java.security.Principal;
 
-import xdb.ddl.mycompany;
+import org.safris.dbx.jsql.mycompany;
 
 public class AccountPrincipal implements Principal {
   private final mycompany.Account account;
