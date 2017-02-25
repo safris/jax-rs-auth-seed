@@ -13,7 +13,7 @@ import javax.ws.rs.ext.Provider;
 
 import org.safris.commons.net.AuthSchemes;
 import org.safris.commons.security.Credentials;
-import org.safris.dbx.jsql.mycompany;
+import org.safris.dbb.jsql.mycompany;
 import org.safris.xrs.server.DefaultRESTServlet;
 
 import com.mycompany.AccountPrincipal;

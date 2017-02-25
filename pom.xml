@@ -17,14 +17,14 @@
     <plugins>
       <plugin>
         <groupId>org.safris.maven.plugin</groupId>
-        <artifactId>dbx-maven-plugin</artifactId>
+        <artifactId>dbb-maven-plugin</artifactId>
         <extensions>true</extensions>
         <executions>
           <execution>
             <id>default-jsql</id>
             <configuration>
               <manifest xmlns="http://maven.safris.org/common/manifest.xsd">
-                <destdir>${project.build.directory}/generated-sources/dbx</destdir>
+                <destdir>${project.build.directory}/generated-sources/dbb</destdir>
                 <resources>
                   <resource>src/main/resources/mycompany.ddlx</resource>
                 </resources>
@@ -36,7 +36,7 @@
             <configuration>
               <vendor>PostgreSQL</vendor>
               <manifest xmlns="http://maven.safris.org/common/manifest.xsd">
-                <destdir>${project.build.directory}/generated-resources/dbx</destdir>
+                <destdir>${project.build.directory}/generated-resources/dbb</destdir>
                 <resources>
                   <resource>src/main/resources/mycompany.ddlx</resource>
                 </resources>
@@ -47,13 +47,13 @@
       </plugin>
       <plugin>
         <groupId>org.safris.maven.plugin</groupId>
-        <artifactId>xjb-maven-plugin</artifactId>
+        <artifactId>jjb-maven-plugin</artifactId>
         <extensions>true</extensions>
         <configuration>
           <manifest xmlns="http://maven.safris.org/common/manifest.xsd">
-            <destdir>${project.build.directory}/generated-sources/xjb</destdir>
+            <destdir>${project.build.directory}/generated-sources/jjb</destdir>
             <resources>
-              <resource>src/main/resources/api.v1.xjs</resource>
+              <resource>src/main/resources/api.v1.jsonx</resource>
             </resources>
           </manifest>
         </configuration>
@@ -129,7 +129,7 @@
             <configuration>
               <includes>
                 <include>**/*.ddlx</include>
-                <include>**/*.xjs</include>
+                <include>**/*.jsonx</include>
                 <include>**/*.xsd</include>
                 <include>**/*.xml</include>
               </includes>
@@ -142,12 +142,12 @@
       <plugins>
         <plugin>
           <groupId>org.safris.maven.plugin</groupId>
-          <artifactId>xjb-maven-plugin</artifactId>
-          <version>1.1.3</version>
+          <artifactId>jjb-maven-plugin</artifactId>
+          <version>0.9.6</version>
         </plugin>
         <plugin>
           <groupId>org.safris.maven.plugin</groupId>
-          <artifactId>dbx-maven-plugin</artifactId>
+          <artifactId>dbb-maven-plugin</artifactId>
           <version>0.9.1</version>
           <extensions>true</extensions>
         </plugin>
@@ -213,16 +213,16 @@
       <artifactId>commons-security</artifactId>
     </dependency>
     <dependency>
-      <groupId>org.safris.dbx</groupId>
-      <artifactId>dbx-jsql</artifactId>
+      <groupId>org.safris.dbb</groupId>
+      <artifactId>dbb-jsql</artifactId>
     </dependency>
     <dependency>
       <groupId>org.safris.xrs</groupId>
       <artifactId>xrs-server</artifactId>
     </dependency>
     <dependency>
-      <groupId>org.safris.xjb</groupId>
-      <artifactId>xjb-rs</artifactId>
+      <groupId>org.safris.jjb</groupId>
+      <artifactId>jjb-rs</artifactId>
     </dependency>
     <dependency>
       <groupId>org.safris.xsb</groupId>
@@ -294,13 +294,13 @@
         <version>2.0.1</version>
       </dependency>
       <dependency>
-        <groupId>org.safris.xjb</groupId>
-        <artifactId>xjb-rs</artifactId>
-        <version>1.0.1</version>
+        <groupId>org.safris.jjb</groupId>
+        <artifactId>jjb-rs</artifactId>
+        <version>0.9.6</version>
       </dependency>
       <dependency>
-        <groupId>org.safris.dbx</groupId>
-        <artifactId>dbx-jsql</artifactId>
+        <groupId>org.safris.dbb</groupId>
+        <artifactId>dbb-jsql</artifactId>
         <version>0.9.5</version>
       </dependency>
       <dependency>

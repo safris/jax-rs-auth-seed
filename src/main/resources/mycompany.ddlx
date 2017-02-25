@@ -1,11 +1,11 @@
 <schema name="mycompany"
-  xmlns="http://dbx.safris.org/ddlx.xsd"
-  xmlns:jsqlx="http://dbx.safris.org/jsqlx.xsd"
+  xmlns="http://dbb.safris.org/ddlx.xsd"
+  xmlns:jsql="http://dbb.safris.org/jsql.xsd"
   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="http://dbx.safris.org/jsqlx.xsd http://dbx.safris.org/jsqlx.xsd">
+  xsi:schemaLocation="http://dbb.safris.org/jsql.xsd http://dbb.safris.org/jsql.xsd">
   
   <table name="id" abstract="true">
-    <column name="id" xsi:type="char" length="36" null="false" jsqlx:generateOnInsert="UUID"/>
+    <column name="id" xsi:type="char" length="36" null="false" jsql:generateOnInsert="UUID"/>
     <constraints>
       <primaryKey>
         <column name="id"/>
@@ -13,10 +13,10 @@
     </constraints>
   </table>
   
-  <table name="timestamp_id" abstract="true" extends="id" jsqlx:versionColumn="version">
-    <column name="created_on" xsi:type="dateTime" null="false" jsqlx:generateOnInsert="TIMESTAMP"/>
-    <column name="modified_on" xsi:type="dateTime" null="false" jsqlx:generateOnInsert="TIMESTAMP" jsqlx:generateOnUpdate="TIMESTAMP"/>
-    <column name="version" xsi:type="int" precision="9" unsigned="true" default="0" null="false" jsqlx:checkOnUpdate="EQUALS" jsqlx:generateOnUpdate="INCREMENT"/>
+  <table name="timestamp_id" abstract="true" extends="id" jsql:versionColumn="version">
+    <column name="created_on" xsi:type="dateTime" null="false" jsql:generateOnInsert="TIMESTAMP"/>
+    <column name="modified_on" xsi:type="dateTime" null="false" jsql:generateOnInsert="TIMESTAMP" jsql:generateOnUpdate="TIMESTAMP"/>
+    <column name="version" xsi:type="int" precision="9" unsigned="true" default="0" null="false" jsql:checkOnUpdate="EQUALS" jsql:generateOnUpdate="INCREMENT"/>
   </table>
   
   <table name="account" extends="timestamp_id">

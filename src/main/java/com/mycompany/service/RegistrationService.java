@@ -11,7 +11,7 @@ import javax.ws.rs.WebApplicationException;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
-import org.safris.dbx.jsql.mycompany;
+import org.safris.dbb.jsql.mycompany;
 
 import com.mycompany.data.AccountData;
 
