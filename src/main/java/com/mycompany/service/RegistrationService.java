@@ -15,7 +15,7 @@ import org.safris.dbb.jsql.mycompany;
 
 import com.mycompany.data.AccountData;
 
-import xjb.api;
+import jjb.api;
 
 @Consumes(MediaType.APPLICATION_JSON)
 @Produces(api.mimeType)

@@ -22,7 +22,7 @@ import com.mycompany.Server;
 import com.mycompany.Template;
 import com.mycompany.data.AccountData;
 
-import xjb.api;
+import jjb.api;
 
 public class ForgotPasswordService {
   private static void sendEmail(final mycompany.Account a, final String subject, final String template) throws BadLocationException, ParseException {

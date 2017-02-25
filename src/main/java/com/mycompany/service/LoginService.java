@@ -12,7 +12,7 @@ import org.safris.dbb.jsql.mycompany;
 
 import com.mycompany.AccountPrincipal;
 
-import xjb.api;
+import jjb.api;
 
 @RolesAllowed("user")
 @Produces(api.mimeType)
