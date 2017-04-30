@@ -16,7 +16,7 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.core.MediaType;
 
 import org.safris.commons.util.Random;
-import org.safris.dbb.jsql.mycompany;
+import org.safris.rdb.jsql.mycompany;
 
 import com.mycompany.Server;
 import com.mycompany.Template;

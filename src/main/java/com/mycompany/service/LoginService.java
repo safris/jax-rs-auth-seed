@@ -8,7 +8,7 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.SecurityContext;
 
-import org.safris.dbb.jsql.mycompany;
+import org.safris.rdb.jsql.mycompany;
 
 import com.mycompany.AccountPrincipal;
 

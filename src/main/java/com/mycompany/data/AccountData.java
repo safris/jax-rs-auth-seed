@@ -1,13 +1,13 @@
 package com.mycompany.data;
 
-import static org.safris.dbb.jsql.DML.*;
+import static org.safris.rdb.jsql.DML.*;
 
 import java.io.IOException;
 import java.sql.SQLException;
 
-import org.safris.dbb.jsql.RowIterator;
-import org.safris.dbb.jsql.Transaction;
-import org.safris.dbb.jsql.mycompany;
+import org.safris.rdb.jsql.RowIterator;
+import org.safris.rdb.jsql.Transaction;
+import org.safris.rdb.jsql.mycompany;
 
 public final class AccountData {
   public static mycompany.Account saveAccount(final mycompany.Account a) throws IOException, SQLException {

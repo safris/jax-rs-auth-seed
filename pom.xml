@@ -17,14 +17,14 @@
     <plugins>
       <plugin>
         <groupId>org.safris.maven.plugin</groupId>
-        <artifactId>dbb-maven-plugin</artifactId>
+        <artifactId>rdb-maven-plugin</artifactId>
         <extensions>true</extensions>
         <executions>
           <execution>
             <id>default-jsql</id>
             <configuration>
               <manifest xmlns="http://maven.safris.org/common/manifest.xsd">
-                <destdir>${project.build.directory}/generated-sources/dbb</destdir>
+                <destdir>${project.build.directory}/generated-sources/rdb</destdir>
                 <resources>
                   <resource>src/main/resources/mycompany.ddlx</resource>
                 </resources>
@@ -36,7 +36,7 @@
             <configuration>
               <vendor>PostgreSQL</vendor>
               <manifest xmlns="http://maven.safris.org/common/manifest.xsd">
-                <destdir>${project.build.directory}/generated-resources/dbb</destdir>
+                <destdir>${project.build.directory}/generated-resources/rdb</destdir>
                 <resources>
                   <resource>src/main/resources/mycompany.ddlx</resource>
                 </resources>
@@ -147,7 +147,7 @@
         </plugin>
         <plugin>
           <groupId>org.safris.maven.plugin</groupId>
-          <artifactId>dbb-maven-plugin</artifactId>
+          <artifactId>rdb-maven-plugin</artifactId>
           <version>0.9.7</version>
           <extensions>true</extensions>
         </plugin>
@@ -213,8 +213,8 @@
       <artifactId>commons-security</artifactId>
     </dependency>
     <dependency>
-      <groupId>org.safris.dbb</groupId>
-      <artifactId>dbb-jsql</artifactId>
+      <groupId>org.safris.rdb</groupId>
+      <artifactId>rdb-jsql</artifactId>
     </dependency>
     <dependency>
       <groupId>org.safris.xrs</groupId>
@@ -299,8 +299,8 @@
         <version>0.9.6</version>
       </dependency>
       <dependency>
-        <groupId>org.safris.dbb</groupId>
-        <artifactId>dbb-jsql</artifactId>
+        <groupId>org.safris.rdb</groupId>
+        <artifactId>rdb-jsql</artifactId>
         <version>0.9.7</version>
       </dependency>
       <dependency>

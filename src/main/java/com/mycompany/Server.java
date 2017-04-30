@@ -1,8 +1,6 @@
 package com.mycompany;
 
 import java.io.UnsupportedEncodingException;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -21,12 +19,10 @@ import org.safris.commons.jetty.UncaughtServletExceptionHandler;
 import org.safris.commons.lang.Resources;
 import org.safris.commons.logging.Logging;
 import org.safris.commons.net.mail.Mail;
-import org.safris.commons.sql.ConnectionProxy;
 import org.safris.commons.xml.dom.DOMStyle;
 import org.safris.commons.xml.dom.DOMs;
-import org.safris.dbb.jsql.EntityDataSource;
-import org.safris.dbb.jsql.EntityRegistry;
-import org.safris.dbb.jsql.mycompany;
+import org.safris.rdb.jsql.DBRegistry;
+import org.safris.rdb.jsql.mycompany;
 import org.safris.xrs.server.ext.RuntimeDelegateImpl;
 import org.safris.xsb.runtime.Bindings;
 import org.xml.sax.InputSource;
@@ -86,12 +82,7 @@ public class Server extends EmbeddedServletContainer {
     mailSender = new MailSender(Mail.Protocol.valueOf(config._mail(0)._server(0)._protocol$().text().toUpperCase()), config._mail(0)._server(0)._host$().text(), config._mail(0)._server(0)._port$().text(), config._mail(0)._server(0)._credentials(0)._username$().text(), config._mail(0)._server(0)._credentials(0)._password$().text());
 
     final DataSource dataSource = DataSources.createDataSource(config._dbcps(0).dbcp_dbcp(), "mycompany");
-    EntityRegistry.register(mycompany.class, PreparedStatement.class, new EntityDataSource() {
-      @Override
-      public Connection getConnection() throws SQLException {
-        return new ConnectionProxy(dataSource.getConnection());
-      }
-    });
+    DBRegistry.registerPreparedBatching(mycompany.class, dataSource);
 
     EmbeddedServletContainer.setUncaughtServletExceptionHandler(new UncaughtServletExceptionHandler() {
       @Override
