@@ -48,7 +48,6 @@
       <plugin>
         <groupId>org.safris.maven.plugin</groupId>
         <artifactId>jjb-maven-plugin</artifactId>
-        <extensions>true</extensions>
         <configuration>
           <manifest xmlns="http://maven.safris.org/common/manifest.xsd">
             <destdir>${project.build.directory}/generated-sources/jjb</destdir>
@@ -144,6 +143,7 @@
           <groupId>org.safris.maven.plugin</groupId>
           <artifactId>jjb-maven-plugin</artifactId>
           <version>0.9.6</version>
+          <extensions>true</extensions>
         </plugin>
         <plugin>
           <groupId>org.safris.maven.plugin</groupId>

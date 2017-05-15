@@ -2,8 +2,6 @@ package com.mycompany;
 
 import java.io.UnsupportedEncodingException;
 import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 import javax.mail.internet.InternetAddress;
 import javax.servlet.ServletRequest;
@@ -17,7 +15,6 @@ import org.safris.commons.dbcp.DataSources;
 import org.safris.commons.jetty.EmbeddedServletContainer;
 import org.safris.commons.jetty.UncaughtServletExceptionHandler;
 import org.safris.commons.lang.Resources;
-import org.safris.commons.logging.Logging;
 import org.safris.commons.net.mail.Mail;
 import org.safris.commons.xml.dom.DOMStyle;
 import org.safris.commons.xml.dom.DOMs;
@@ -25,13 +22,15 @@ import org.safris.rdb.jsql.DBRegistry;
 import org.safris.rdb.jsql.mycompany;
 import org.safris.xrs.server.ext.RuntimeDelegateImpl;
 import org.safris.xsb.runtime.Bindings;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.xml.sax.InputSource;
 
 import com.mycompany.jaxrsauthseed.config.xe.$cf_https;
 import com.mycompany.jaxrsauthseed.config.xe.cf_config;
 
 public class Server extends EmbeddedServletContainer {
-  private static final Logger logger = Logger.getLogger(Server.class.getName());
+  private static final Logger logger = LoggerFactory.getLogger(Server.class);
   private static Server instance;
 
   static {
@@ -75,7 +74,6 @@ public class Server extends EmbeddedServletContainer {
   protected Server(final cf_config config, final Class<? extends HttpServlet> ... servletClasses) throws SQLException, UnsupportedEncodingException {
     super(config._server(0)._port$().text(), config._server(0) instanceof $cf_https ? (($cf_https)config._server(0))._keystore(0)._path$().text() : null, config._server(0) instanceof $cf_https ? (($cf_https)config._server(0))._keystore(0)._password$().text() : null, !config._debug(0)._externalResourcesAccess$().isNull() && config._debug(0)._externalResourcesAccess$().text(), config._realm(0), servletClasses);
     this.config = config;
-    Logging.setLevel(Level.parse(config._debug(0)._logging(0)._global$().text()), config._debug(0)._logging(0)._logger());
 
     from = new InternetAddress(config._mail(0)._server(0)._credentials(0)._username$().text(), config._mail(0)._server(0)._credentials(0)._username$().text());
     onServiceErrorEmail = ((String)config._debug(0)._onServiceExceptionEmail$().text()).length() > 0 ? (String)config._debug(0)._onServiceExceptionEmail$().text() : null;

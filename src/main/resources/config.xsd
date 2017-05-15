@@ -10,7 +10,6 @@
   
   <xs:import namespace="http://commons.safris.org/xml/datatypes.xsd" schemaLocation="http://commons.safris.org/xml/datatypes.xsd"/>
   <xs:import namespace="http://commons.safris.org/dbcp.xsd" schemaLocation="http://commons.safris.org/dbcp.xsd"/>
-  <xs:import namespace="http://commons.safris.org/logging.xsd" schemaLocation="http://commons.safris.org/logging.xsd"/>
   <xs:import namespace="http://commons.safris.org/servlet.xsd" schemaLocation="http://commons.safris.org/servlet.xsd"/>
   
   <xs:complexType name="server" abstract="true">
@@ -81,16 +80,6 @@
       </xs:element>
       <xs:element name="debug" minOccurs="0">
         <xs:complexType>
-          <xs:sequence minOccurs="0" maxOccurs="unbounded">
-            <xs:element name="logging">
-              <xs:complexType>
-                <xs:sequence>
-                  <xs:element name="logger" type="lg:setting" minOccurs="0" maxOccurs="unbounded"/>
-                </xs:sequence>
-                <xs:attribute name="global" type="lg:level" use="required"/>
-              </xs:complexType>
-            </xs:element>
-          </xs:sequence>
           <xs:attribute name="externalResourcesAccess" type="xs:boolean" use="required"/>
           <xs:attribute name="onServiceExceptionEmail" use="required">
             <xs:simpleType>

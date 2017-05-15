@@ -73,7 +73,7 @@ public final class Template {
       try {
         for (final String entry : entries) {
           try (final InputStream in = Resources.getResource(entry).getURL().openStream()) {
-            final String data = new String(Streams.getBytes(in));
+            final String data = new String(Streams.readBytes(in));
             nameToTemplate.put(entry.substring(templateRoot.length() + 1), data);
           }
         }

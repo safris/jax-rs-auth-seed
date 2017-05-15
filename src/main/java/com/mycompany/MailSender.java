@@ -1,6 +1,5 @@
 package com.mycompany;
 
-import java.util.logging.Logger;
 
 import javax.mail.MessagingException;
 import javax.mail.internet.InternetAddress;
@@ -10,9 +9,11 @@ import org.safris.commons.net.mail.Mail;
 import org.safris.commons.net.mail.Mail.Protocol;
 import org.safris.commons.net.mail.MimeContent;
 import org.safris.commons.security.Credentials;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class MailSender {
-  private static final Logger logger = Logger.getLogger(MailSender.class.getName());
+  private static final Logger logger = LoggerFactory.getLogger(MailSender.class);
 
   private final Mail.Sender sender;
   private final Credentials credentials;
@@ -27,7 +28,7 @@ public class MailSender {
       sender.send(credentials, new Mail.Message(subject, new MimeContent(message, type), from, to));
     }
     catch (final MessagingException e) {
-      logger.throwing(getClass().getName(), e.getMessage(), e);
+      logger.error(getClass().getName() + ".send()", e);
     }
   }
 

@@ -16,9 +16,7 @@
     <property name="privacyUrl" value="{{clientScheme}}://{{clientHost}}/#/privacy"/>
   </properties>
   
-  <debug externalResourcesAccess="true" onServiceExceptionEmail="" displayJsonSpecOnServiceError="false">
-    <logging global="FINER"/>
-  </debug>
+  <debug externalResourcesAccess="true" onServiceExceptionEmail="" displayJsonSpecOnServiceError="false"/>
   
   <server xsi:type="http" port="8180"/>
   
