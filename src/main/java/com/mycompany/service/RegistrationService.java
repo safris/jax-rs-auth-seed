@@ -11,7 +11,7 @@ import javax.ws.rs.WebApplicationException;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
-import org.safris.rdb.jsql.mycompany;
+import org.libx4j.rdb.jsql.mycompany;
 
 import com.mycompany.data.AccountData;
 
@@ -24,17 +24,17 @@ public class RegistrationService {
   @Path("/register")
   public api.Account register(final api.Account account) throws IOException, SQLException {
     mycompany.Account a = new mycompany.Account();
-    a.firstName.set(account.firstName());
-    a.lastName.set(account.lastName());
-    a.email.set(account.email());
-    a.password.set(account.password());
+    a.firstName.set(account.firstName.get());
+    a.lastName.set(account.lastName.get());
+    a.email.set(account.email.get());
+    a.password.set(account.password.get());
     a.authRole.set(mycompany.Account.AuthRole.USER);
 
     a = AccountData.saveAccount(a);
     if (a == null)
       throw new WebApplicationException("email is already registered", Response.Status.CONFLICT); // FIXME: What if some other error occurs? Seems like there should be a special catch for SC_BAD_REQUEST too
 
-    account.id(a.id.get());
+    account.id.set(a.id.get());
     account.password.clear();
     return account;
   }

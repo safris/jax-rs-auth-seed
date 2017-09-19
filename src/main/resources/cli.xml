@@ -1,10 +1,10 @@
 <cli
-  xmlns="http://commons.safris.org/cli.xsd"
+  xmlns="http://libx4j.org/cli.xsd"
   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="http://commons.safris.org/cli.xsd http://commons.safris.org/cli.xsd">
+  xsi:schemaLocation="http://libx4j.org/cli.xsd http://libx4j.org/cli.xsd">
   <option>
     <name long="config" short="C"/>
-    <argument label="CONFIG_FILE"/>
+    <argument label="CONFIG_FILE" default="config.xml"/>
     <description>config file to use instead of default</description>
   </option>
 </cli>

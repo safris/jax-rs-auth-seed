@@ -16,11 +16,11 @@ import java.util.jar.JarFile;
 
 import javax.swing.text.BadLocationException;
 
-import org.safris.commons.io.Streams;
-import org.safris.commons.lang.Resource;
-import org.safris.commons.lang.Resources;
-import org.safris.commons.lang.Strings;
-import org.safris.commons.net.URLs;
+import org.lib4j.io.Streams;
+import org.lib4j.lang.Resource;
+import org.lib4j.lang.Resources;
+import org.lib4j.lang.Strings;
+import org.lib4j.net.URLs;
 
 import com.mycompany.jaxrsauthseed.config.xe.$cf_config;
 import com.mycompany.jaxrsauthseed.config.xe.cf_config;

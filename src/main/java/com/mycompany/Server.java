@@ -10,21 +10,20 @@ import javax.servlet.http.HttpServlet;
 import javax.sql.DataSource;
 import javax.ws.rs.ext.RuntimeDelegate;
 
-import org.safris.commons.cli.Options;
-import org.safris.commons.dbcp.DataSources;
-import org.safris.commons.jetty.EmbeddedServletContainer;
-import org.safris.commons.jetty.UncaughtServletExceptionHandler;
-import org.safris.commons.lang.Resources;
-import org.safris.commons.net.mail.Mail;
-import org.safris.commons.xml.dom.DOMStyle;
-import org.safris.commons.xml.dom.DOMs;
-import org.safris.rdb.jsql.DBRegistry;
-import org.safris.rdb.jsql.mycompany;
-import org.safris.xrs.server.ext.RuntimeDelegateImpl;
-import org.safris.xsb.runtime.Bindings;
+import org.lib4j.lang.Resources;
+import org.lib4j.net.mail.Mail;
+import org.lib4j.xml.dom.DOMStyle;
+import org.lib4j.xml.dom.DOMs;
+import org.libx4j.cli.Options;
+import org.libx4j.dbcp.DataSources;
+import org.libx4j.jetty.EmbeddedServletContainer;
+import org.libx4j.jetty.UncaughtServletExceptionHandler;
+import org.libx4j.rdb.jsql.Registry;
+import org.libx4j.rdb.jsql.mycompany;
+import org.libx4j.xrs.server.ext.RuntimeDelegateImpl;
+import org.libx4j.xsb.runtime.Bindings;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.xml.sax.InputSource;
 
 import com.mycompany.jaxrsauthseed.config.xe.$cf_https;
 import com.mycompany.jaxrsauthseed.config.xe.cf_config;
@@ -43,8 +42,7 @@ public class Server extends EmbeddedServletContainer {
     final Options options = Options.parse(Resources.getResource("cli.xml").getURL(), Server.class, args);
     logger.info(options.toString());
 
-    final String configOption = options.getOption("config");
-    final cf_config config = (cf_config)Bindings.parse(new InputSource(Resources.getResourceOrFile(configOption != null ? configOption : "config.xml").getURL().openStream()));
+    final cf_config config = (cf_config)Bindings.parse(Resources.getResourceOrFile(options.getOption("config")).getURL());
     logger.info(DOMs.domToString(Bindings.marshal(config), DOMStyle.INDENT));
 
     instance = new Server(config, RESTServlet.class);
@@ -80,7 +78,7 @@ public class Server extends EmbeddedServletContainer {
     mailSender = new MailSender(Mail.Protocol.valueOf(config._mail(0)._server(0)._protocol$().text().toUpperCase()), config._mail(0)._server(0)._host$().text(), config._mail(0)._server(0)._port$().text(), config._mail(0)._server(0)._credentials(0)._username$().text(), config._mail(0)._server(0)._credentials(0)._password$().text());
 
     final DataSource dataSource = DataSources.createDataSource(config._dbcps(0).dbcp_dbcp(), "mycompany");
-    DBRegistry.registerPreparedBatching(mycompany.class, dataSource);
+    Registry.registerPreparedBatching(mycompany.class, dataSource);
 
     EmbeddedServletContainer.setUncaughtServletExceptionHandler(new UncaughtServletExceptionHandler() {
       @Override

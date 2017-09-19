@@ -4,11 +4,11 @@ package com.mycompany;
 import javax.mail.MessagingException;
 import javax.mail.internet.InternetAddress;
 
-import org.safris.commons.lang.Throwables;
-import org.safris.commons.net.mail.Mail;
-import org.safris.commons.net.mail.Mail.Protocol;
-import org.safris.commons.net.mail.MimeContent;
-import org.safris.commons.security.Credentials;
+import org.lib4j.lang.Throwables;
+import org.lib4j.net.mail.Mail;
+import org.lib4j.net.mail.MimeContent;
+import org.lib4j.net.mail.Mail.Protocol;
+import org.lib4j.security.Credentials;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

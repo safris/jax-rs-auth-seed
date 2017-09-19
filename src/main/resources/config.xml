@@ -1,6 +1,6 @@
 <config
   xmlns="http://mycompany.com/jax-rs-auth-seed/config.xsd"
-  xmlns:se="http://commons.safris.org/servlet.xsd"
+  xmlns:se="http://jetty.libx4j.org/servlet.xsd"
   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xsi:schemaLocation="http://mycompany.com/jax-rs-auth-seed/config.xsd config.xsd">
   
@@ -31,7 +31,7 @@
   </realm>
   
   <dbcps>
-    <dbcp xmlns="http://commons.safris.org/dbcp.xsd" name="mycompany">
+    <dbcp xmlns="http://libx4j.org/dbcp.xsd" name="mycompany">
       <jdbc>
         <url>jdbc:postgresql://localhost/mycompany</url>
         <driverClassName>org.postgresql.Driver</driverClassName>
@@ -66,7 +66,7 @@
         <logAbandoned>false</logAbandoned>
       </removal>
       <logging>
-        <level>ALL</level>
+        <level>INFO</level>
         <logExpiredConnections>true</logExpiredConnections>
         <logAbandoned>true</logAbandoned>
       </logging>

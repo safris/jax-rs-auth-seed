@@ -5,8 +5,8 @@ import java.util.Set;
 
 import javax.ws.rs.ApplicationPath;
 
-import org.safris.jjb.rs.JSObjectBodyReader;
-import org.safris.jjb.rs.JSObjectBodyWriter;
+import org.libx4j.jjb.rs.JSObjectBodyReader;
+import org.libx4j.jjb.rs.JSObjectBodyWriter;
 
 @ApplicationPath("/*")
 public class Application extends javax.ws.rs.core.Application {

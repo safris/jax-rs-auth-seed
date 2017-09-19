@@ -1,13 +1,13 @@
 package com.mycompany.data;
 
-import static org.safris.rdb.jsql.DML.*;
+import static org.libx4j.rdb.jsql.DML.*;
 
 import java.io.IOException;
 import java.sql.SQLException;
 
-import org.safris.rdb.jsql.RowIterator;
-import org.safris.rdb.jsql.Transaction;
-import org.safris.rdb.jsql.mycompany;
+import org.libx4j.rdb.jsql.RowIterator;
+import org.libx4j.rdb.jsql.Transaction;
+import org.libx4j.rdb.jsql.mycompany;
 
 public final class AccountData {
   public static mycompany.Account saveAccount(final mycompany.Account a) throws IOException, SQLException {

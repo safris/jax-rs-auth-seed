@@ -15,8 +15,8 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.core.MediaType;
 
-import org.safris.commons.util.Random;
-import org.safris.rdb.jsql.mycompany;
+import org.lib4j.util.Random;
+import org.libx4j.rdb.jsql.mycompany;
 
 import com.mycompany.Server;
 import com.mycompany.Template;
@@ -37,7 +37,7 @@ public class ForgotPasswordService {
   @Path("/forgot")
   @Consumes(MediaType.APPLICATION_JSON)
   public void forgot(final api.Credentials credentials) throws BadLocationException, IOException, ParseException, SQLException {
-    final mycompany.Account a = AccountData.findAccount(credentials.email());
+    final mycompany.Account a = AccountData.findAccount(credentials.email.get());
     if (a == null)
       throw new NotAcceptableException();
 
@@ -63,7 +63,7 @@ public class ForgotPasswordService {
       throw new NotAcceptableException();
 
     a.password.set(password);
-    a.forgotToken.set(null);
+    a.forgotToken.set((String)null);
     AccountData.saveAccount(a);
     sendEmail(a, "Password Reset", "reset.html");
   }

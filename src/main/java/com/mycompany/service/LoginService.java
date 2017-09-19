@@ -8,7 +8,7 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.SecurityContext;
 
-import org.safris.rdb.jsql.mycompany;
+import org.libx4j.rdb.jsql.mycompany;
 
 import com.mycompany.AccountPrincipal;
 
@@ -25,10 +25,10 @@ public class LoginService {
       throw new NotAuthorizedException("Incorrect username or password");
 
     final api.Account account = new api.Account();
-    account.id(a.id.get());
-    account.email(a.email.get());
-    account.firstName(a.firstName.get());
-    account.lastName(a.lastName.get());
+    account.id.set(a.id.get());
+    account.email.set(a.email.get());
+    account.firstName.set(a.firstName.get());
+    account.lastName.set(a.lastName.get());
     return account;
   }
 }

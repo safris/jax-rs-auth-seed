@@ -1,7 +1,7 @@
 <project
   xmlns="http://maven.apache.org/POM/4.0.0"
   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd http://maven.safris.org/common/manifest.xsd http://maven.safris.org/common/manifest.xsd">
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd http://maven.libx4j.org/common/manifest.xsd http://maven.libx4j.org/common/manifest.xsd">
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.mycompany</groupId>
   <artifactId>jax-rs-auth-seed</artifactId>
@@ -16,15 +16,14 @@
     <finalName>server</finalName>
     <plugins>
       <plugin>
-        <groupId>org.safris.maven.plugin</groupId>
+        <groupId>org.libx4j.maven.plugin</groupId>
         <artifactId>rdb-maven-plugin</artifactId>
-        <extensions>true</extensions>
         <executions>
           <execution>
             <id>default-jsql</id>
             <configuration>
-              <manifest xmlns="http://maven.safris.org/common/manifest.xsd">
-                <destdir>${project.build.directory}/generated-sources/rdb</destdir>
+              <manifest xmlns="http://maven.libx4j.org/common/manifest.xsd">
+                <destdir>generated-sources/rdb</destdir>
                 <resources>
                   <resource>src/main/resources/mycompany.ddlx</resource>
                 </resources>
@@ -35,8 +34,8 @@
             <id>default-ddl</id>
             <configuration>
               <vendor>PostgreSQL</vendor>
-              <manifest xmlns="http://maven.safris.org/common/manifest.xsd">
-                <destdir>${project.build.directory}/generated-resources/rdb</destdir>
+              <manifest xmlns="http://maven.libx4j.org/common/manifest.xsd">
+                <destdir>generated-resources/rdb</destdir>
                 <resources>
                   <resource>src/main/resources/mycompany.ddlx</resource>
                 </resources>
@@ -46,11 +45,11 @@
         </executions>
       </plugin>
       <plugin>
-        <groupId>org.safris.maven.plugin</groupId>
+        <groupId>org.libx4j.maven.plugin</groupId>
         <artifactId>jjb-maven-plugin</artifactId>
         <configuration>
-          <manifest xmlns="http://maven.safris.org/common/manifest.xsd">
-            <destdir>${project.build.directory}/generated-sources/jjb</destdir>
+          <manifest xmlns="http://maven.libx4j.org/common/manifest.xsd">
+            <destdir>generated-sources/jjb</destdir>
             <resources>
               <resource>src/main/resources/api.v1.jsonx</resource>
             </resources>
@@ -58,11 +57,11 @@
         </configuration>
       </plugin>
       <plugin>
-        <groupId>org.safris.maven.plugin</groupId>
+        <groupId>org.libx4j.maven.plugin</groupId>
         <artifactId>xsb-maven-plugin</artifactId>
         <configuration>
-          <manifest xmlns="http://maven.safris.org/common/manifest.xsd">
-            <destdir>${project.build.directory}/generated-sources/xsb</destdir>
+          <manifest xmlns="http://maven.libx4j.org/common/manifest.xsd">
+            <destdir>generated-sources/xsb</destdir>
             <resources>
               <resource>src/main/resources/config.xsd</resource>
             </resources>
@@ -117,9 +116,9 @@
         </executions>
       </plugin>
       <plugin>
-        <groupId>org.safris.maven.plugin</groupId>
+        <groupId>org.libx4j.maven.plugin</groupId>
         <artifactId>xml-maven-plugin</artifactId>
-        <version>2.0.3</version>
+        <version>2.0.4-SNAPSHOT</version>
         <executions>
           <execution>
             <goals>
@@ -140,21 +139,21 @@
     <pluginManagement>
       <plugins>
         <plugin>
-          <groupId>org.safris.maven.plugin</groupId>
+          <groupId>org.libx4j.maven.plugin</groupId>
           <artifactId>jjb-maven-plugin</artifactId>
-          <version>0.9.6</version>
+          <version>0.9.7-SNAPSHOT</version>
           <extensions>true</extensions>
         </plugin>
         <plugin>
-          <groupId>org.safris.maven.plugin</groupId>
+          <groupId>org.libx4j.maven.plugin</groupId>
           <artifactId>rdb-maven-plugin</artifactId>
-          <version>0.9.7</version>
+          <version>0.9.8-SNAPSHOT</version>
           <extensions>true</extensions>
         </plugin>
         <plugin>
-          <groupId>org.safris.maven.plugin</groupId>
+          <groupId>org.libx4j.maven.plugin</groupId>
           <artifactId>xsb-maven-plugin</artifactId>
-          <version>2.1.2</version>
+          <version>2.1.3-SNAPSHOT</version>
           <extensions>true</extensions>
         </plugin>
         <plugin>
@@ -173,14 +172,7 @@
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-compiler-plugin</artifactId>
-          <version>3.5.1</version>
-          <configuration>
-            <fork>true</fork>
-            <meminitial>256m</meminitial>
-            <maxmem>4096m</maxmem>
-            <source>1.8</source>
-            <target>1.8</target>
-          </configuration>
+          <version>3.6.1</version>
         </plugin>
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
@@ -201,40 +193,40 @@
   </build>
   <dependencies>
     <dependency>
-      <groupId>org.safris.commons</groupId>
-      <artifactId>commons-cli</artifactId>
+      <groupId>org.libx4j</groupId>
+      <artifactId>libx4j-cli</artifactId>
     </dependency>
     <dependency>
-      <groupId>org.safris.commons</groupId>
-      <artifactId>commons-dbcp</artifactId>
+      <groupId>org.libx4j</groupId>
+      <artifactId>libx4j-dbcp</artifactId>
     </dependency>
     <dependency>
-      <groupId>org.safris.commons</groupId>
-      <artifactId>commons-security</artifactId>
+      <groupId>org.lib4j</groupId>
+      <artifactId>lib4j-security</artifactId>
     </dependency>
     <dependency>
-      <groupId>org.safris.rdb</groupId>
+      <groupId>org.libx4j.rdb</groupId>
       <artifactId>rdb-jsql</artifactId>
     </dependency>
     <dependency>
-      <groupId>org.safris.xrs</groupId>
+      <groupId>org.libx4j.xrs</groupId>
       <artifactId>xrs-server</artifactId>
     </dependency>
     <dependency>
-      <groupId>org.safris.jjb</groupId>
+      <groupId>org.libx4j.jjb</groupId>
       <artifactId>jjb-rs</artifactId>
     </dependency>
     <dependency>
-      <groupId>org.safris.xsb</groupId>
+      <groupId>org.libx4j.xsb</groupId>
       <artifactId>xsb-runtime</artifactId>
     </dependency>
     <dependency>
-      <groupId>org.safris.commons</groupId>
-      <artifactId>commons-sql</artifactId>
+      <groupId>org.lib4j</groupId>
+      <artifactId>lib4j-sql</artifactId>
     </dependency>
     <dependency>
-      <groupId>org.safris.commons</groupId>
-      <artifactId>commons-jetty</artifactId>
+      <groupId>org.libx4j</groupId>
+      <artifactId>libx4j-jetty</artifactId>
     </dependency>
     <dependency>
       <groupId>org.postgresql</groupId>
@@ -248,65 +240,65 @@
   <dependencyManagement>
     <dependencies>
       <dependency>
-        <groupId>org.safris.commons</groupId>
-        <artifactId>commons-net</artifactId>
-        <version>1.4.8</version>
+        <groupId>org.lib4j</groupId>
+        <artifactId>lib4j-net</artifactId>
+        <version>1.4.9-SNAPSHOT</version>
       </dependency>
       <dependency>
-        <groupId>org.safris.commons</groupId>
-        <artifactId>commons-security</artifactId>
+        <groupId>org.lib4j</groupId>
+        <artifactId>lib4j-security</artifactId>
         <version>1.0.9</version>
       </dependency>
       <dependency>
-        <groupId>org.safris.commons</groupId>
-        <artifactId>commons-xml</artifactId>
-        <version>1.0.2</version>
+        <groupId>org.lib4j</groupId>
+        <artifactId>lib4j-xml</artifactId>
+        <version>1.0.3-SNAPSHOT</version>
       </dependency>
       <dependency>
-        <groupId>org.safris.commons</groupId>
-        <artifactId>commons-dbcp</artifactId>
-        <version>2.0.2</version>
+        <groupId>org.libx4j</groupId>
+        <artifactId>libx4j-dbcp</artifactId>
+        <version>2.0.3-SNAPSHOT</version>
       </dependency>
       <dependency>
-        <groupId>org.safris.commons</groupId>
-        <artifactId>commons-jetty</artifactId>
-        <version>1.1.2</version>
+        <groupId>org.libx4j</groupId>
+        <artifactId>libx4j-jetty</artifactId>
+        <version>1.1.3-SNAPSHOT</version>
       </dependency>
       <dependency>
-        <groupId>org.safris.commons</groupId>
-        <artifactId>commons-sql</artifactId>
-        <version>1.1.3</version>
+        <groupId>org.lib4j</groupId>
+        <artifactId>lib4j-sql</artifactId>
+        <version>1.1.4-SNAPSHOT</version>
       </dependency>
       <dependency>
-        <groupId>org.safris.commons</groupId>
-        <artifactId>commons-test</artifactId>
+        <groupId>org.lib4j</groupId>
+        <artifactId>lib4j-test</artifactId>
         <version>1.1.6</version>
         <scope>test</scope>
       </dependency>
       <dependency>
-        <groupId>org.safris.commons</groupId>
-        <artifactId>commons-cli</artifactId>
-        <version>2.1.5</version>
+        <groupId>org.libx4j</groupId>
+        <artifactId>libx4j-cli</artifactId>
+        <version>2.1.6-SNAPSHOT</version>
       </dependency>
       <dependency>
-        <groupId>org.safris.xrs</groupId>
+        <groupId>org.libx4j.xrs</groupId>
         <artifactId>xrs-server</artifactId>
-        <version>2.0.1</version>
+        <version>2.0.2-SNAPSHOT</version>
       </dependency>
       <dependency>
-        <groupId>org.safris.jjb</groupId>
+        <groupId>org.libx4j.jjb</groupId>
         <artifactId>jjb-rs</artifactId>
-        <version>0.9.6</version>
+        <version>0.9.7-SNAPSHOT</version>
       </dependency>
       <dependency>
-        <groupId>org.safris.rdb</groupId>
+        <groupId>org.libx4j.rdb</groupId>
         <artifactId>rdb-jsql</artifactId>
-        <version>0.9.7</version>
+        <version>0.9.8-SNAPSHOT</version>
       </dependency>
       <dependency>
-        <groupId>org.safris.xsb</groupId>
+        <groupId>org.libx4j.xsb</groupId>
         <artifactId>xsb-runtime</artifactId>
-        <version>2.1.2</version>
+        <version>2.1.3-SNAPSHOT</version>
       </dependency>
 
       <!-- Only PostgreSQL or MySQL is necessary, not both -->
@@ -324,14 +316,14 @@
   </dependencyManagement>
   <repositories>
     <repository>
-      <id>mvn.repo.safris.org</id>
-      <url>http://mvn.repo.safris.org/m2</url>
+      <id>mvn.repo.lib4j.org</id>
+      <url>http://mvn.repo.lib4j.org/m2</url>
     </repository>
   </repositories>
   <pluginRepositories>
     <pluginRepository>
-      <id>mvn.repo.safris.org</id>
-      <url>http://mvn.repo.safris.org/m2</url>
+      <id>mvn.repo.lib4j.org</id>
+      <url>http://mvn.repo.lib4j.org/m2</url>
     </pluginRepository>
   </pluginRepositories>
 </project>
