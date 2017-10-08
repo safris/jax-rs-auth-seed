@@ -10,23 +10,21 @@ import javax.servlet.http.HttpServlet;
 import javax.sql.DataSource;
 import javax.ws.rs.ext.RuntimeDelegate;
 
+import org.lib4j.cli.Options;
+import org.lib4j.dbcp.DataSources;
 import org.lib4j.lang.Resources;
 import org.lib4j.net.mail.Mail;
-import org.lib4j.xml.dom.DOMStyle;
-import org.lib4j.xml.dom.DOMs;
-import org.libx4j.cli.Options;
-import org.libx4j.dbcp.DataSources;
+import org.lib4j.xml.jaxb.JAXBUtil;
 import org.libx4j.jetty.EmbeddedServletContainer;
 import org.libx4j.jetty.UncaughtServletExceptionHandler;
 import org.libx4j.rdb.jsql.Registry;
 import org.libx4j.rdb.jsql.mycompany;
 import org.libx4j.xrs.server.ext.RuntimeDelegateImpl;
-import org.libx4j.xsb.runtime.Bindings;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.mycompany.jaxrsauthseed.config.xe.$cf_https;
-import com.mycompany.jaxrsauthseed.config.xe.cf_config;
+import com.mycompany.jax_rs_auth_seed.config.Config;
+import com.mycompany.jax_rs_auth_seed.config.Https;
 
 public class Server extends EmbeddedServletContainer {
   private static final Logger logger = LoggerFactory.getLogger(Server.class);
@@ -36,14 +34,14 @@ public class Server extends EmbeddedServletContainer {
     System.setProperty(RuntimeDelegate.JAXRS_RUNTIME_DELEGATE_PROPERTY, RuntimeDelegateImpl.class.getName());
   }
 
-  private final cf_config config;
+  private final Config config;
 
   public static void main(final String[] args) throws Exception {
     final Options options = Options.parse(Resources.getResource("cli.xml").getURL(), Server.class, args);
     logger.info(options.toString());
 
-    final cf_config config = (cf_config)Bindings.parse(Resources.getResourceOrFile(options.getOption("config")).getURL());
-    logger.info(DOMs.domToString(Bindings.marshal(config), DOMStyle.INDENT));
+    final Config config = JAXBUtil.parse(Config.class, Resources.getResourceOrFile(options.getOption("config")).getURL());
+    logger.info(JAXBUtil.toXMLString(config));
 
     instance = new Server(config, RESTServlet.class);
 
@@ -69,15 +67,15 @@ public class Server extends EmbeddedServletContainer {
   }
 
   @SafeVarargs
-  protected Server(final cf_config config, final Class<? extends HttpServlet> ... servletClasses) throws SQLException, UnsupportedEncodingException {
-    super(config._server(0)._port$().text(), config._server(0) instanceof $cf_https ? (($cf_https)config._server(0))._keystore(0)._path$().text() : null, config._server(0) instanceof $cf_https ? (($cf_https)config._server(0))._keystore(0)._password$().text() : null, !config._debug(0)._externalResourcesAccess$().isNull() && config._debug(0)._externalResourcesAccess$().text(), null, servletClasses);
+  protected Server(final Config config, final Class<? extends HttpServlet> ... servletClasses) throws SQLException, UnsupportedEncodingException {
+    super(config.getServer().getPort(), config.getServer() instanceof Https ? ((Https)config.getServer()).getKeystore().getPath() : null, config.getServer() instanceof Https ? ((Https)config.getServer()).getKeystore().getPassword() : null, !config.getDebug().isExternalResourcesAccess(), null, servletClasses);
     this.config = config;
 
-    from = new InternetAddress(config._mail(0)._server(0)._credentials(0)._username$().text(), config._mail(0)._server(0)._credentials(0)._username$().text());
-    onServiceErrorEmail = ((String)config._debug(0)._onServiceExceptionEmail$().text()).length() > 0 ? (String)config._debug(0)._onServiceExceptionEmail$().text() : null;
-    mailSender = new MailSender(Mail.Protocol.valueOf(config._mail(0)._server(0)._protocol$().text().toUpperCase()), config._mail(0)._server(0)._host$().text(), config._mail(0)._server(0)._port$().text(), config._mail(0)._server(0)._credentials(0)._username$().text(), config._mail(0)._server(0)._credentials(0)._password$().text());
+    from = new InternetAddress(config.getMail().getServer().getCredentials().getUsername(), config.getMail().getServer().getCredentials().getUsername());
+    onServiceErrorEmail = config.getDebug().getOnServiceExceptionEmail().length() > 0 ? (String)config.getDebug().getOnServiceExceptionEmail() : null;
+    mailSender = new MailSender(Mail.Protocol.valueOf(config.getMail().getServer().getProtocol().toUpperCase()), config.getMail().getServer().getHost(), config.getMail().getServer().getPort(), config.getMail().getServer().getCredentials().getUsername(), config.getMail().getServer().getCredentials().getPassword());
 
-    final DataSource dataSource = DataSources.createDataSource(config._dbcps(0).dbcp_dbcp(), "mycompany");
+    final DataSource dataSource = DataSources.createDataSource(config.getDbcps().getDbcp(), "mycompany");
     Registry.registerPreparedBatching(mycompany.class, dataSource);
 
     EmbeddedServletContainer.setUncaughtServletExceptionHandler(new UncaughtServletExceptionHandler() {
@@ -89,7 +87,7 @@ public class Server extends EmbeddedServletContainer {
     });
   }
 
-  public cf_config getConfig() {
+  public Config getConfig() {
     return config;
   }
 }

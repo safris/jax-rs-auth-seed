@@ -22,8 +22,7 @@ import org.lib4j.lang.Resources;
 import org.lib4j.lang.Strings;
 import org.lib4j.net.URLs;
 
-import com.mycompany.jaxrsauthseed.config.xe.$cf_config;
-import com.mycompany.jaxrsauthseed.config.xe.cf_config;
+import com.mycompany.jax_rs_auth_seed.config.Config;
 
 public final class Template {
   private static final Map<String,String> defaultProperties = new HashMap<String,String>();
@@ -85,10 +84,10 @@ public final class Template {
       }
     }
 
-    final cf_config config = Server.instance().getConfig();
-    if (!config._properties(0).isNull())
-      for (final $cf_config._properties._property property : config._properties(0)._property())
-        defaultProperties.put(property._name$().text(), property._value$().text());
+    final Config config = Server.instance().getConfig();
+    if (config.getProperties() != null)
+      for (final Config.Properties.Property property : config.getProperties().getProperty())
+        defaultProperties.put(property.getName(), property.getValue());
 
     try {
       Strings.interpolate(defaultProperties, "{{", "}}");
