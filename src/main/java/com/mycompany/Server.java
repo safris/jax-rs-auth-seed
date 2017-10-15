@@ -14,7 +14,7 @@ import org.lib4j.cli.Options;
 import org.lib4j.dbcp.DataSources;
 import org.lib4j.lang.Resources;
 import org.lib4j.net.mail.Mail;
-import org.lib4j.xml.jaxb.JAXBUtil;
+import org.lib4j.xml.jaxb.JaxbUtil;
 import org.libx4j.jetty.EmbeddedServletContainer;
 import org.libx4j.jetty.UncaughtServletExceptionHandler;
 import org.libx4j.rdb.jsql.Registry;
@@ -40,8 +40,8 @@ public class Server extends EmbeddedServletContainer {
     final Options options = Options.parse(Resources.getResource("cli.xml").getURL(), Server.class, args);
     logger.info(options.toString());
 
-    final Config config = JAXBUtil.parse(Config.class, Resources.getResourceOrFile(options.getOption("config")).getURL());
-    logger.info(JAXBUtil.toXMLString(config));
+    final Config config = JaxbUtil.parse(Config.class, Resources.getResourceOrFile(options.getOption("config")).getURL());
+    logger.info(JaxbUtil.toXMLString(config));
 
     instance = new Server(config, RESTServlet.class);
 

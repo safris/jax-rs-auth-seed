@@ -1,7 +1,7 @@
 <project
   xmlns="http://maven.apache.org/POM/4.0.0"
   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd http://maven.lib4j.org/common/manifest.xsd http://maven.lib4j.org/common/manifest.xsd">
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.mycompany</groupId>
   <artifactId>jax-rs-auth-seed</artifactId>
@@ -24,43 +24,44 @@
             <goals>
               <goal>xjc</goal>
             </goals>
+            <configuration>
+              <destDir>${project.build.directory}/generated-sources/jaxb</destDir>
+              <extension>true</extension>
+              <schemas>
+                <schemas>src/main/resources/config.xsd</schemas>
+              </schemas>
+            </configuration>
           </execution>
         </executions>
-        <configuration>
-          <enableIntrospection>true</enableIntrospection>
-          <extension>true</extension>
-          <sources>
-            <source>src/main/resources/config.xsd</source>
-          </sources>
-        </configuration>
       </plugin>
       <plugin>
         <groupId>org.libx4j.maven.plugin</groupId>
         <artifactId>rdb-maven-plugin</artifactId>
         <version>0.9.8-SNAPSHOT</version>
-        <extensions>true</extensions>
         <executions>
           <execution>
-            <id>default-jsql</id>
+            <id>ddl</id>
+            <goals>
+              <goal>ddl</goal>
+            </goals>
             <configuration>
-              <manifest xmlns="http://maven.lib4j.org/common/manifest.xsd">
-                <destdir>generated-sources/rdb</destdir>
-                <resources>
-                  <resource>src/main/resources/mycompany.ddlx</resource>
-                </resources>
-              </manifest>
+              <vendor>PostgreSQL</vendor>
+              <destDir>${project.build.directory}/generated-resources/rdb</destDir>
+              <schemas>
+                <schema>src/main/resources/mycompany.ddlx</schema>
+              </schemas>
             </configuration>
           </execution>
           <execution>
-            <id>default-ddl</id>
+            <id>jsql</id>
+            <goals>
+              <goal>jsql</goal>
+            </goals>
             <configuration>
-              <vendor>PostgreSQL</vendor>
-              <manifest xmlns="http://maven.lib4j.org/common/manifest.xsd">
-                <destdir>generated-resources/rdb</destdir>
-                <resources>
-                  <resource>src/main/resources/mycompany.ddlx</resource>
-                </resources>
-              </manifest>
+              <destDir>${project.build.directory}/generated-sources/rdb</destDir>
+              <schemas>
+                <schema>src/main/resources/mycompany.ddlx</schema>
+              </schemas>
             </configuration>
           </execution>
         </executions>
@@ -69,15 +70,19 @@
         <groupId>org.libx4j.maven.plugin</groupId>
         <artifactId>jjb-maven-plugin</artifactId>
         <version>0.9.7-SNAPSHOT</version>
-        <extensions>true</extensions>
-        <configuration>
-          <manifest xmlns="http://maven.lib4j.org/common/manifest.xsd">
-            <destdir>generated-sources/jjb</destdir>
-            <resources>
-              <resource>src/main/resources/api.v1.jsonx</resource>
-            </resources>
-          </manifest>
-        </configuration>
+        <executions>
+          <execution>
+            <goals>
+              <goal>generate</goal>
+            </goals>
+            <configuration>
+              <destDir>${project.build.directory}/generated-sources/jjb</destDir>
+              <schemas>
+                <schema>src/main/resources/api.v1.jsonx</schema>
+              </schemas>
+            </configuration>
+          </execution>
+        </executions>
       </plugin>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
@@ -89,17 +94,17 @@
             <goals>
               <goal>shade</goal>
             </goals>
+            <configuration>
+              <shadedArtifactAttached>true</shadedArtifactAttached>
+              <finalName>${project.artifactId}-standalone</finalName>
+              <transformers>
+                <transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
+                  <mainClass>com.mycompany.Server</mainClass>
+                </transformer>
+              </transformers>
+            </configuration>
           </execution>
         </executions>
-        <configuration>
-          <shadedArtifactAttached>true</shadedArtifactAttached>
-          <finalName>${project.artifactId}-standalone</finalName>
-          <transformers>
-            <transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
-              <mainClass>com.mycompany.Server</mainClass>
-            </transformer>
-          </transformers>
-        </configuration>
       </plugin>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
@@ -111,14 +116,14 @@
             <goals>
               <goal>jar-no-fork</goal>
             </goals>
+            <configuration>
+              <excludes>
+                <exclude>**/*.class</exclude>
+                <exclude>**/*.jar</exclude>
+              </excludes>
+            </configuration>
           </execution>
         </executions>
-        <configuration>
-          <excludes>
-            <exclude>**/*.class</exclude>
-            <exclude>**/*.jar</exclude>
-          </excludes>
-        </configuration>
       </plugin>
       <plugin>
         <groupId>org.lib4j.maven.plugin</groupId>
