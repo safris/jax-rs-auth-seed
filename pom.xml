@@ -40,9 +40,9 @@
         <version>0.9.8-SNAPSHOT</version>
         <executions>
           <execution>
-            <id>ddl</id>
+            <id>ddlx</id>
             <goals>
-              <goal>ddl</goal>
+              <goal>ddlx</goal>
             </goals>
             <configuration>
               <vendor>PostgreSQL</vendor>
