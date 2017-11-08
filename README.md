@@ -1,10 +1,11 @@
 <img src="https://www.cohesionfirst.org/logo.png" align="right"/>
+
 ## jax-rs-auth-seed<br>![java-enterprise][java-enterprise] <a href="https://www.cohesionfirst.org/"><img src="https://img.shields.io/badge/CohesionFirst%E2%84%A2--blue.svg"></a>
 > The complete basic auth pattern, and seed for JAX-RS.
 
 **Why do we keep reinventing the wheel? The authentication patten has been done and done again 1,000,000 times. Instead of spending the first two weeks of development on the authentication requirement, get a jump start on implementing your business logic immediately.**
 
-This project is countepart (the back-end component) of the [`angular-auth-seed`][angular-auth-seed] project. Together, these two projects provide a developer with a fully functional platform for authenticated applications based on AngularJS and Java's [JAX-RS v2.0 Specification][jax-rs-spec].
+This project is counterpart (the back-end component) of the [`angular-auth-seed`][angular-auth-seed] project. Together, these two projects provide a developer with a fully functional platform for authenticated applications based on AngularJS and Java's [JAX-RS v2.0 Specification][jax-rs-spec].
 
 **Created with the highest standard of development in mind, this project uses best practices and patterns to empower the developer to write code that is clear, cohesive, and easily testable.**
 
