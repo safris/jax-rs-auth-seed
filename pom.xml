@@ -40,9 +40,9 @@
         <version>0.9.8-SNAPSHOT</version>
         <executions>
           <execution>
-            <id>ddlx</id>
+            <id>ddlx2sql</id>
             <goals>
-              <goal>ddlx</goal>
+              <goal>ddlx2sql</goal>
             </goals>
             <configuration>
               <vendor>PostgreSQL</vendor>
@@ -53,9 +53,9 @@
             </configuration>
           </execution>
           <execution>
-            <id>jsql</id>
+            <id>ddlx2jsql</id>
             <goals>
-              <goal>jsql</goal>
+              <goal>ddlx2jsql</goal>
             </goals>
             <configuration>
               <destDir>${project.build.directory}/generated-sources/rdb</destDir>
@@ -252,12 +252,12 @@
       <dependency>
         <groupId>org.postgresql</groupId>
         <artifactId>postgresql</artifactId>
-        <version>9.4.1212.jre7</version>
+        <version>42.2.1</version>
       </dependency>
       <dependency>
         <groupId>mysql</groupId>
         <artifactId>mysql-connector-java</artifactId>
-        <version>6.0.5</version>
+        <version>6.0.6</version>
       </dependency>
     </dependencies>
   </dependencyManagement>

@@ -2,12 +2,12 @@
   elementFormDefault="qualified"
   targetNamespace="http://mycompany.com/jax-rs-auth-seed/config.xsd"
   xmlns:cf="http://mycompany.com/jax-rs-auth-seed/config.xsd"
-  xmlns:dt="http://xml.lib4j.org/datatypes.xsd"
-  xmlns:dbcp="http://lib4j.org/dbcp.xsd"
+  xmlns:dt="http://xml.lib4j.org/datatypes-1.0.3.xsd"
+  xmlns:dbcp="http://lib4j.org/dbcp-2.0.3.xsd"
   xmlns:xs="http://www.w3.org/2001/XMLSchema">
   
-  <xs:import namespace="http://xml.lib4j.org/datatypes.xsd" schemaLocation="http://xml.lib4j.org/datatypes.xsd"/>
-  <xs:import namespace="http://lib4j.org/dbcp.xsd" schemaLocation="http://lib4j.org/dbcp.xsd"/>
+  <xs:import namespace="http://xml.lib4j.org/datatypes-1.0.3.xsd" schemaLocation="http://xml.lib4j.org/datatypes-1.0.3.xsd"/>
+  <xs:import namespace="http://lib4j.org/dbcp-2.0.3.xsd" schemaLocation="http://lib4j.org/dbcp-2.0.3.xsd"/>
   
   <xs:complexType name="server" abstract="true">
     <xs:attribute name="port" type="dt:port" use="required"/>

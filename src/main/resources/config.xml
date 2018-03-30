@@ -21,7 +21,7 @@
     </server>
   </mail>
   <dbcps>
-    <dbcp xmlns="http://lib4j.org/dbcp.xsd" name="mycompany">
+    <dbcp xmlns="http://lib4j.org/dbcp-2.0.3.xsd" name="mycompany">
       <jdbc>
         <url>jdbc:postgresql://localhost/mycompany</url>
         <driverClassName>org.postgresql.Driver</driverClassName>
