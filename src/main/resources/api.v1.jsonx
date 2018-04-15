@@ -1,7 +1,7 @@
 <json name="api" mimeType="application/vnd.mycompany.mobile.v1+json"
-  xmlns="http://jjb.libx4j.org/jsonx-0.9.7.xsd"
+  xmlns="http://jjb.libx4j.org/jsonx-0.9.8.xsd"
   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="http://jjb.libx4j.org/jsonx-0.9.7.xsd http://jjb.libx4j.org/jsonx.xsd">
+  xsi:schemaLocation="http://jjb.libx4j.org/jsonx-0.9.8.xsd http://jjb.libx4j.org/jsonx.xsd">
   
   <description>JSON class definitions for communication protocol of server API</description>
   

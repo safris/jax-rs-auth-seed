@@ -1,8 +1,11 @@
 package com.mycompany.filter;
 
-import java.io.IOException;
-import java.security.Principal;
-import java.sql.SQLException;
+import com.mycompany.AccountPrincipal;
+import com.mycompany.data.AccountData;
+import org.lib4j.net.AuthScheme;
+import org.lib4j.net.Basic;
+import org.libx4j.rdb.jsql.mycompany;
+import org.libx4j.xrs.server.RestApplicationServlet;
 
 import javax.ws.rs.WebApplicationException;
 import javax.ws.rs.container.ContainerRequestContext;
@@ -10,18 +13,13 @@ import javax.ws.rs.container.ContainerRequestFilter;
 import javax.ws.rs.core.HttpHeaders;
 import javax.ws.rs.core.SecurityContext;
 import javax.ws.rs.ext.Provider;
-
-import org.lib4j.net.AuthSchemes;
-import org.lib4j.security.Credentials;
-import org.libx4j.rdb.jsql.mycompany;
-import org.libx4j.xrs.server.DefaultRESTServlet;
-
-import com.mycompany.AccountPrincipal;
-import com.mycompany.data.AccountData;
+import java.io.IOException;
+import java.security.Principal;
+import java.sql.SQLException;
 
 @Provider
 public class AuthFilter implements ContainerRequestFilter {
-  private static final String AUTHORIZED_USER = DefaultRESTServlet.class.getPackage().getName() + ".AUTHORIZED_USER";
+  private static final String AUTHORIZED_USER = RestApplicationServlet.class.getPackage().getName() + ".AUTHORIZED_USER";
   private static final String AUTHORIZED_USER_CHECKED = AUTHORIZED_USER + "_CHECKED";
 
   private static mycompany.Account getAccount(final ContainerRequestContext requestContext) {
@@ -33,12 +31,12 @@ public class AuthFilter implements ContainerRequestFilter {
     if (authorization == null)
       return null;
 
-    final Credentials credentials = AuthSchemes.parseBasicAuthHeader(authorization);
+    final Basic credentials = (Basic)AuthScheme.parse(authorization, Basic.class);
     if (credentials == null)
       return null;
 
     try {
-      final mycompany.Account a = AccountData.findAccount(credentials.username, credentials.password);
+      final mycompany.Account a = AccountData.findAccount(credentials.getUsername(), credentials.getPassword());
       requestContext.setProperty(AUTHORIZED_USER, a);
       return a;
     }

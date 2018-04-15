@@ -1,13 +1,13 @@
 package com.mycompany.data;
 
-import static org.libx4j.rdb.jsql.DML.*;
+import org.libx4j.rdb.jsql.RowIterator;
+import org.libx4j.rdb.jsql.Transaction;
+import org.libx4j.rdb.jsql.mycompany;
 
 import java.io.IOException;
 import java.sql.SQLException;
 
-import org.libx4j.rdb.jsql.RowIterator;
-import org.libx4j.rdb.jsql.Transaction;
-import org.libx4j.rdb.jsql.mycompany;
+import static org.libx4j.rdb.jsql.DML.*;
 
 public final class AccountData {
   public static mycompany.Account saveAccount(final mycompany.Account a) throws IOException, SQLException {
@@ -48,7 +48,7 @@ public final class AccountData {
     final mycompany.Account a = new mycompany.Account();
     return UPDATE(a).
       SET(a.forgotToken, (String)null).
-      WHERE(EQ(a.forgotToken, token)).execute()[0];
+      WHERE(EQ(a.forgotToken, token)).execute();
   }
 
   public static mycompany.Account findAccountByToken(final String token) throws IOException, SQLException {
